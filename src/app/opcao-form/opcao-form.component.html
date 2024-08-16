@@ -1,0 +1,24 @@
+<form [formGroup]="opcaoForm" (ngSubmit)="onSubmit()">
+    <h3 class="mt-5 mb-3">Cadastrar Nova Opcao</h3>
+    <div>
+        <label>Nome</label>
+        <input type="text" formControlName="nome">
+    </div>
+    <div>
+        <label>Quarto</label>
+        <input type="text" formControlName="quarto">
+    </div>
+    <div>
+        <label>Banheiro</label>
+        <input type="text" formControlName="banheiro">
+    </div>
+    <div>
+        <label>Area</label>
+        <input type="text" formControlName="area">
+    </div>
+    <div>
+        <label>Valor</label>
+        <input type="text" formControlName="valor">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="opcaoForm.invalid">Salvar</button>
+</form>
