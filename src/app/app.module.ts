@@ -6,16 +6,24 @@ import { AppComponent } from './app.component';
 import { OpcaoListComponent } from './opcao-list/opcao-list.component';
 import { HomeModule } from './home/home.module';
 import { OpcaoModule } from './opcao/opcao.module';
+import { LoginComponent } from './account/login/login.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { AuthenticationComponent } from './account/authentication/authentication.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    OpcaoModule
+    OpcaoModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

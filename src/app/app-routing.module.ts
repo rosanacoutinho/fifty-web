@@ -3,13 +3,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { OpcaoListComponent } from './opcao-list/opcao-list.component';
 import { OpcaoFormComponent } from './opcao-form/opcao-form.component';
-import { LoginComponent } from './login/login.component';
+import { AuthenticationComponent } from './account/authentication/authentication.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { AuthGuard } from './account/shared/auth.guard';
+import { LoginComponent } from './account/login/login.component';
 
 const routes: Routes = [
-  {path:"", component: LoginComponent},
-  {path:"home", component: HomeComponent},
-  {path:"listaopcao", component: OpcaoListComponent},
-  {path:"novaopcao", component: OpcaoFormComponent},
+  {
+    path:"", component: HomeComponent,
+    children: [
+      {path:"listaopcao", component: OpcaoListComponent},
+      {path:"novaopcao", component: OpcaoFormComponent},
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path:"", component: AuthenticationComponent,
+    children: [
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path:"login", component: LoginComponent},
+      {path:"create-account", component: CreateAccountComponent}
+    ]
+  }
 ];
 
 @NgModule({
