@@ -20,13 +20,12 @@ export class OpcaoFormComponent implements OnInit{
 
  
  ngOnInit(): void {
-  console.log( "iniciou")
-   this.opcaoForm = this.formbuilder.group({
+    this.opcaoForm = this.formbuilder.group({
     nome: ['', Validators.required],
     quarto: ['', Validators.required],
     banheiro: ['', Validators.required],
-   area: ['', Validators.required],
-   valor: ['', Validators.required]
+    area: ['', Validators.required],
+    valor: ['', Validators.required]
    })
 
  }
@@ -34,7 +33,6 @@ export class OpcaoFormComponent implements OnInit{
 
 
  onSubmit(){
-  console.log( "aperrtei o botaoS")
   if(this.opcaoForm.valid){
     let opcao: Opcao = this.opcaoForm.value;
     this.opcaoService.addOpcao(opcao);
