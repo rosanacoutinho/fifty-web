@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../shared/account.service';
 
 @Component({
   selector: 'app-create-account',
@@ -8,15 +9,39 @@ import { Component, OnInit } from '@angular/core';
 export class CreateAccountComponent implements OnInit {
   account = {
     creci: '',
+    nome: '',
+    celular: '',
+    email: '',
     password: ''
   };
 
-  constructor() { }
+  creciValido: boolean = false;
 
-  ngOnInit() {
+  constructor(
+    private accountService: AccountService
+  ) { }
+
+  ngOnInit(): void {
+   
   }
 
-  onSubmit() {
-
+  verificaCreci(){
+    this.accountService.verificaCreci( this.account.creci ) ; 
+    this.creciValido = true;
+    this.account.creci='99664'
+    this.account.nome= 'ROSANA DE PAULA COUTINNHO BARROS'
+    return true;
+    
   }
+
+   onSubmit() {
+    try {
+      const result =  this.accountService.createAccount(this.account);
+      // exibir uma msg amigavel aqui
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 }

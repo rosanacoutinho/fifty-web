@@ -9,38 +9,35 @@ import { Injectable } from '@angular/core';
 export class AccountService {
 
   constructor(private http: HttpClient) { }
+ 
+  creciValido: boolean = false;
 
-  async login(user: any) {
+  login(user: any) {
 
    const url = `${environment.api}/senhas/validar`;
-   const body = { creci: user.creci ,
+   const body = { creci: user.creci,
                   senha: user.password
     };
 
-   this.http.post(url, body).subscribe(response => {
-     console.log(response);
-   });
+   this.http.post(url, body).subscribe(response => { console.log(response); });
 
-    return false;
   }
 
-  async login2(user: any) {
-    const result = await this.http.post<any>(`${environment.api}/auth/login`, user).toPromise(); // Colocar url 
-    if (result && result.access_token) {
-      window.localStorage.setItem('token', result.access_token);
-      return true;
-    }
+  
+  verificaCreci(creci : string){
+    console.log(creci)
+    //const result = this.http.post<any>(`${environment.api}/corretores/creci/${creci}`,null).toPromise();
+    //account.nome = 'Rosana Coutinho'
+    //account.creci = '96644' 
+    return true;
 
-    return false;
+
   }
 
-  async createAccount(account: any) {
-    const result = await this.http.post<any>(`${environment.api}/users`, account).toPromise();
-    return result;
+  createAccount(account: any) {
+    return true;
   }
 
-  getAuthorizationToken() {
-    const token = window.localStorage.getItem('token');
-    return token;
-  }
+
+ 
 }
