@@ -1,5 +1,25 @@
 <div>
-    <h2>Bem vindo ao Fifty!</h2>
-    <button [routerLink]="['/listaopcao']">Minhas Opcoes</button>
-    <button [routerLink]="['/listaopcao']">Encontrar Opcoes para meus clientes</button>
+    <h2>Encontre parceirias e venda mais rapido!</h2>
 </div>
+<br>
+<br>
+
+<div class="row">
+  <div class="col-sm-2 mb-3 mb-sm-0">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Buscar a partir das minhas opções</h5>
+          <p class="card-text">Adicione suas captações e busque parceiros com compradores interessados!</p>
+          <a href="#" class="btn btn-primary" [routerLink]="['/listaopcao']">Minhas Opções</a>
+        </div>
+      </div>
+  </div>
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Buscar a partir dos meus clientes</h5>
+        <p class="card-text">Adicione perfis com as necessidades dos seus clientes e busque parceiros com opções que atendem!</p>
+        <a href="#" class="btn btn-primary" [routerLink]="['/listaopcao']">Meus Perfis</a>
+      </div>
+    </div>
+  </div>

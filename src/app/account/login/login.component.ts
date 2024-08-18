@@ -18,18 +18,21 @@ export class LoginComponent implements OnInit {
     private router : Router
   ) { }
 
+
+
   ngOnInit(): void {
   }
 
-  async onSubmit(){
-    try{
-      const result = await this.accountService.login(this.login);
-      console.log(`Login efetuado: ${result}`);
-
+  onSubmit(){
+     try{
+      const result =  this.accountService.login(this.login);
+      console.log(result)
+      //console.log("Login efetuado:");
+      //console.log(result);//os dados do usuario nao estao volta do pra ca! 
       //navego para a rota vazia novamente
       this.router.navigate(['']);
     } catch (error) {
-      console.error(error);
-    }
+       console.error(error);
+     }
   }
 }
