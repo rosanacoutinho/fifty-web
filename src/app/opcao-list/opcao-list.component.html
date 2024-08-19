@@ -1,9 +1,31 @@
 
 <div>
-    <h2>Minhas Opcoes</h2>
     <button class="btn btn-primary" [routerLink]="['/novaopcao']">Adicionar Opcao</button>
+    <br>
+    <br>
+    <h3 class="mt-5 mb-3">Minhas Opções</h3>
 </div>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome da Opção</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let opcao of opcoes">
+            <td>{{opcao.nomeOpcao}}</td>
+            <td>
+                <button class="btn btn-sm btn-danger mx-1" (click)="deleteOpcao(opcao.id)">Deletar</button>
+                <button class="btn btn-sm btn-secondary mx-1" [routerLink]="['/editarOpcao', opcao.id]">Editar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-<ul>
-    <li *ngFor="let opcao of opcoes"></li>
+<ul *ngIf="opcoes.length;else noOpcao">
+
 </ul>
+<ng-template #noOpcao>
+    <p>Você não posui nenhuma opção cadastrada</p>
+</ng-template>

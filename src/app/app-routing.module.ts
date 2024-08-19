@@ -12,8 +12,8 @@ const routes: Routes = [
   {
     path:"", component: HomeComponent,
     children: [
-      {path:"listaopcao", component: OpcaoListComponent},
-      {path:"novaopcao", component: OpcaoFormComponent},
+      //{path:"listaopcao", component: OpcaoListComponent},
+      //{path:"novaopcao", component: OpcaoFormComponent},
     ],
     canActivate: [AuthGuard]
   },
@@ -22,7 +22,10 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path:"login", component: LoginComponent},
-      {path:"create-account", component: CreateAccountComponent}
+      {path:"create-account", component: CreateAccountComponent},
+      {path:"listaopcao", component: OpcaoListComponent},
+      {path:"novaopcao", component: OpcaoFormComponent},
+      {path:"editarOpcao/id", component: OpcaoFormComponent},
     ]
   }
 ];

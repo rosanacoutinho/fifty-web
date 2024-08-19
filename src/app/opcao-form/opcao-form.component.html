@@ -1,24 +1,94 @@
 <form [formGroup]="opcaoForm" (ngSubmit)="onSubmit()">
-    <h3 class="mt-5 mb-3">Cadastrar Nova Opcao</h3>
-    <div>
-        <label>Nome</label>
-        <input type="text" formControlName="nome">
+    <h3>Cadastrar Nova Opção</h3>
+    <br>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="nome" placeholder="Nome">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" formControlName="tipo" placeholder="Tipo">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" formControlName="valor" placeholder="Valor">
+      </div>
     </div>
-    <div>
-        <label>Quarto</label>
-        <input type="text" formControlName="quarto">
-    </div>
-    <div>
-        <label>Banheiro</label>
-        <input type="text" formControlName="banheiro">
-    </div>
-    <div>
-        <label>Area</label>
-        <input type="text" formControlName="area">
-    </div>
-    <div>
-        <label>Valor</label>
-        <input type="text" formControlName="valor">
-    </div>
+    <br>
+    <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="area" placeholder="Area">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" formControlName="quarto" placeholder="Quarto">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" formControlName="suite" placeholder="Suíte">
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" formControlName="banheiro" placeholder="Banheiro">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="vagaGaragem" placeholder="Vaga">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="sala" placeholder="sala">
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col">
+              <input type="text" class="form-control" formControlName="cozinha" placeholder="Cozinha">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" formControlName="dependencia" placeholder="Dependência">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" formControlName="varanda" placeholder="Varanda">
+            </div>
+          </div>
+    <br>
+    <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="areaServico" placeholder="Area de serviço">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" formControlName="andar" placeholder="Andar">
+        </div>
+      </div>
+    <br>
+    <br>
+    <br>
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" formControlName="cep" placeholder="CEP">
+          </div>
+        <div class="col">
+          <input type="text" class="form-control" formControlName="pais" placeholder="País">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" formControlName="estado" placeholder="Estado">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" formControlName="cidade" placeholder="Cidade">
+          </div>
+      </div>
+      <br>
+      <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" formControlName="bairro" placeholder="Bairro">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="rua" placeholder="Rua">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="numero" placeholder="Número">
+          </div>
+          <div class="col">
+              <input type="text" class="form-control" formControlName="complemento" placeholder="Complemento">
+            </div>
+        </div>
+    <br>
     <button class="btn btn-primary" type="submit" [disabled]="opcaoForm.invalid">Salvar</button>
-</form>
+  </form>
