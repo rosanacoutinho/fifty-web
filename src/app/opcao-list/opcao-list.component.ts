@@ -12,12 +12,14 @@ export class OpcaoListComponent implements OnInit {
 
  opcoes: Opcao[] = [];
 
+ id_corretor= 'ab125546-8794-4005-81c9-973242db3b42'
+
  constructor(
    private opcaoService: OpcaoService,
    private router: Router){}
 
  ngOnInit(): void {
-  this.buscarOpcoes();
+  this.buscarOpcoes(this.id_corretor);
 }
 
   deleteOpcao(id: string): void {
@@ -25,7 +27,7 @@ export class OpcaoListComponent implements OnInit {
       next: () => {
         console.log(`Item com ID ${id} deletado com sucesso`);
         alert("Opção excuída com sucesso!");
-        this.buscarOpcoes();
+        this.buscarOpcoes(this.id_corretor);
       },
       error: (err) => {
         console.error('Erro ao deletar item:', err);
@@ -36,11 +38,10 @@ export class OpcaoListComponent implements OnInit {
   });
 }
 
-  buscarOpcoes():void{
-    this.opcaoService.getOpcoes().subscribe({
+  buscarOpcoes(id_corretor: string):void{
+    this.opcaoService.getOpcoes(this.id_corretor).subscribe({
       next: (response) => {
         this.opcoes = response;
-        console.log(this.opcoes);
       },
       error: (err) => {
         console.error('Erro ao obter dados:', err);
@@ -50,5 +51,4 @@ export class OpcaoListComponent implements OnInit {
       }
     });
   }
-
 }

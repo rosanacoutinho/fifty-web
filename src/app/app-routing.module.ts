@@ -25,7 +25,7 @@ const routes: Routes = [
       {path:"create-account", component: CreateAccountComponent},
       {path:"listaopcao", component: OpcaoListComponent},
       {path:"novaopcao", component: OpcaoFormComponent},
-      {path:"editarOpcao/id", component: OpcaoFormComponent},
+      {path:"editarOpcao/:id", component: OpcaoFormComponent},
     ]
   }
 ];

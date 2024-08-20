@@ -1,94 +1,94 @@
-<form [formGroup]="opcaoForm" (ngSubmit)="onSubmit()">
-    <h3>Cadastrar Nova Opção</h3>
+<form (ngSubmit)="onSubmit()">
+  <h2>{{isEditing? 'Editar' : 'Criar'}} Opção</h2>
     <br>
     <div class="form-row">
       <div class="col">
-        <input type="text" class="form-control" formControlName="nome" placeholder="Nome">
+        <input type="text" class="form-control" name="nomeOpcao" [(ngModel)]="opcao.nomeOpcao" placeholder="Nome">
       </div>
       <div class="col">
-        <input type="text" class="form-control" formControlName="tipo" placeholder="Tipo">
+        <input type="text" class="form-control" name="tipo" [(ngModel)]="opcao.tipo" placeholder="Tipo">
       </div>
       <div class="col">
-        <input type="text" class="form-control" formControlName="valor" placeholder="Valor">
+        <input type="text" class="form-control" name="valor" [(ngModel)]="opcao.valor" placeholder="Valor">
       </div>
     </div>
     <br>
     <div class="form-row">
         <div class="col">
-          <input type="text" class="form-control" formControlName="area" placeholder="Area">
+          <input type="text" class="form-control" name="area" [(ngModel)]="opcao.area" placeholder="Area">
         </div>
         <div class="col">
-          <input type="text" class="form-control" formControlName="quarto" placeholder="Quarto">
+          <input type="text" class="form-control" name="quarto" [(ngModel)]="opcao.quarto" placeholder="Quarto">
         </div>
         <div class="col">
-          <input type="text" class="form-control" formControlName="suite" placeholder="Suíte">
+          <input type="text" class="form-control" name="suite" [(ngModel)]="opcao.suite" placeholder="Suíte">
         </div>
       </div>
       <br>
       <div class="form-row">
           <div class="col">
-            <input type="text" class="form-control" formControlName="banheiro" placeholder="Banheiro">
+            <input type="text" class="form-control" name="banheiro" [(ngModel)]="opcao.banheiro" placeholder="Banheiro">
           </div>
           <div class="col">
-            <input type="text" class="form-control" formControlName="vagaGaragem" placeholder="Vaga">
+            <input type="text" class="form-control" name="vagaGaragem" [(ngModel)]="opcao.vagaGaragem" placeholder="Vaga">
           </div>
           <div class="col">
-            <input type="text" class="form-control" formControlName="sala" placeholder="sala">
+            <input type="text" class="form-control" name="sala" [(ngModel)]="opcao.sala" placeholder="sala">
           </div>
         </div>
         <br>
         <div class="form-row">
             <div class="col">
-              <input type="text" class="form-control" formControlName="cozinha" placeholder="Cozinha">
+              <input type="text" class="form-control" name="cozinha" [(ngModel)]="opcao.cozinha" placeholder="Cozinha">
             </div>
             <div class="col">
-              <input type="text" class="form-control" formControlName="dependencia" placeholder="Dependência">
+              <input type="text" class="form-control" name="dependencia" [(ngModel)]="opcao.dependencia" placeholder="Dependência">
             </div>
             <div class="col">
-              <input type="text" class="form-control" formControlName="varanda" placeholder="Varanda">
+              <input type="text" class="form-control" name="varanda" [(ngModel)]="opcao.varanda" placeholder="Varanda">
             </div>
           </div>
     <br>
     <div class="form-row">
         <div class="col">
-          <input type="text" class="form-control" formControlName="areaServico" placeholder="Area de serviço">
+          <input type="text" class="form-control" name="areaServico" [(ngModel)]="opcao.areaServico" placeholder="Area de serviço">
         </div>
         <div class="col">
-          <input type="text" class="form-control" formControlName="andar" placeholder="Andar">
+          <input type="text" class="form-control" name="andar" [(ngModel)]="opcao.andar" placeholder="Andar">
         </div>
       </div>
     <br>
     <br>
     <br>
-    <div class="form-row">
+ <!--   <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" formControlName="cep" placeholder="CEP">
+            <input type="text" class="form-control" name="cep" placeholder="CEP">
           </div>
         <div class="col">
-          <input type="text" class="form-control" formControlName="pais" placeholder="País">
+          <input type="text" class="form-control" name="pais" placeholder="País">
         </div>
         <div class="col">
-          <input type="text" class="form-control" formControlName="estado" placeholder="Estado">
+          <input type="text" class="form-control" name="estado" placeholder="Estado">
         </div>
         <div class="col">
-            <input type="text" class="form-control" formControlName="cidade" placeholder="Cidade">
+            <input type="text" class="form-control" name="cidade" placeholder="Cidade">
           </div>
       </div>
       <br>
       <div class="form-row">
           <div class="col">
-            <input type="text" class="form-control" formControlName="bairro" placeholder="Bairro">
+            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
           </div>
           <div class="col">
-            <input type="text" class="form-control" formControlName="rua" placeholder="Rua">
+            <input type="text" class="form-control" name="rua" placeholder="Rua">
           </div>
           <div class="col">
-            <input type="text" class="form-control" formControlName="numero" placeholder="Número">
+            <input type="text" class="form-control" name="numero" placeholder="Número">
           </div>
           <div class="col">
-              <input type="text" class="form-control" formControlName="complemento" placeholder="Complemento">
+              <input type="text" class="form-control" name="complemento" placeholder="Complemento">
             </div>
-        </div>
+        </div> -->
     <br>
-    <button class="btn btn-primary" type="submit" [disabled]="opcaoForm.invalid">Salvar</button>
+    <button class="btn btn-primary" type="submit">Salvar</button>
   </form>
