@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  login = {
+  user = {
+    idUsuario:'',
     creci: '',
     password: ''
   };
@@ -24,15 +25,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-     try{
-      const result =  this.accountService.login(this.login);
-      console.log(result)
-      //console.log("Login efetuado:");
-      //console.log(result);//os dados do usuario nao estao volta do pra ca! 
-      //navego para a rota vazia novamente
-      this.router.navigate(['']);
-    } catch (error) {
-       console.error(error);
-     }
+    const result =  this.accountService.login(this.user).subscribe({
+      next: (response) => { this.user.idUsuario = response.id,
+                    this.router.navigate(['/home']);
+       }, 
+      error: (err) => {
+      console.error(err);
+      alert("Usuário não cadastrado" );}
+    }); 
   }
 }

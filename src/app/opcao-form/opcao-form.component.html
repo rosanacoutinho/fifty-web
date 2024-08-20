@@ -3,92 +3,116 @@
     <br>
     <div class="form-row">
       <div class="col">
-        <input type="text" class="form-control" name="nomeOpcao" [(ngModel)]="opcao.nomeOpcao" placeholder="Nome">
+        <label>Nome</label>
+        <input type="text" class="form-control" name="nomeOpcao" [(ngModel)]="opcao.nomeOpcao" placeholder="Digite aqui um nome para identificar sua opcao">
       </div>
       <div class="col">
+        <label>Tipo Imovel</label>
         <input type="text" class="form-control" name="tipo" [(ngModel)]="opcao.tipo" placeholder="Tipo">
       </div>
       <div class="col">
+        <label>Valor (R$)</label>
         <input type="text" class="form-control" name="valor" [(ngModel)]="opcao.valor" placeholder="Valor">
       </div>
     </div>
     <br>
     <div class="form-row">
         <div class="col">
+          <label>Area (m2)</label>
           <input type="text" class="form-control" name="area" [(ngModel)]="opcao.area" placeholder="Area">
         </div>
         <div class="col">
+          <label>Quarto</label>
           <input type="text" class="form-control" name="quarto" [(ngModel)]="opcao.quarto" placeholder="Quarto">
         </div>
         <div class="col">
+          <label>Suite</label>
           <input type="text" class="form-control" name="suite" [(ngModel)]="opcao.suite" placeholder="Suíte">
         </div>
       </div>
       <br>
       <div class="form-row">
           <div class="col">
+            <label>Banheiro</label>
             <input type="text" class="form-control" name="banheiro" [(ngModel)]="opcao.banheiro" placeholder="Banheiro">
           </div>
           <div class="col">
+            <label>Garagem</label>
             <input type="text" class="form-control" name="vagaGaragem" [(ngModel)]="opcao.vagaGaragem" placeholder="Vaga">
           </div>
           <div class="col">
+            <label>Sala</label>
             <input type="text" class="form-control" name="sala" [(ngModel)]="opcao.sala" placeholder="sala">
           </div>
         </div>
         <br>
         <div class="form-row">
             <div class="col">
+              <label>Cozinha</label>
               <input type="text" class="form-control" name="cozinha" [(ngModel)]="opcao.cozinha" placeholder="Cozinha">
             </div>
             <div class="col">
+              <label>Dependencia</label>
               <input type="text" class="form-control" name="dependencia" [(ngModel)]="opcao.dependencia" placeholder="Dependência">
             </div>
             <div class="col">
+              <label>Varanda</label>
               <input type="text" class="form-control" name="varanda" [(ngModel)]="opcao.varanda" placeholder="Varanda">
             </div>
           </div>
     <br>
     <div class="form-row">
         <div class="col">
+          <label>Area Servico</label>
           <input type="text" class="form-control" name="areaServico" [(ngModel)]="opcao.areaServico" placeholder="Area de serviço">
         </div>
         <div class="col">
+          <label>Andar</label>
           <input type="text" class="form-control" name="andar" [(ngModel)]="opcao.andar" placeholder="Andar">
         </div>
       </div>
     <br>
     <br>
     <br>
- <!--   <div class="form-row">
+    <h3>Endereço</h3>
+   <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" name="cep" placeholder="CEP">
+           <label>Cep</label>
+            <input type="text" class="form-control" name="cep" [(ngModel)]="opcao.endereco.cep" placeholder="CEP">
           </div>
         <div class="col">
-          <input type="text" class="form-control" name="pais" placeholder="País">
+          <label>Pais</label>
+          <input type="text" class="form-control" name="pais" [(ngModel)]="opcao.endereco.pais" placeholder="País">
         </div>
         <div class="col">
-          <input type="text" class="form-control" name="estado" placeholder="Estado">
+          <label>Estado</label>
+          <input type="text" class="form-control" name="estado" [(ngModel)]="opcao.endereco.estado"  placeholder="Estado">
         </div>
         <div class="col">
-            <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+          <label>Cidade</label>
+            <input type="text" class="form-control" name="cidade" [(ngModel)]="opcao.endereco.cidade" placeholder="Cidade">
           </div>
       </div>
       <br>
       <div class="form-row">
           <div class="col">
-            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+            <label>Bairro</label>
+            <input type="text" class="form-control" name="bairro" [(ngModel)]="opcao.endereco.bairro" placeholder="Bairro">
           </div>
           <div class="col">
-            <input type="text" class="form-control" name="rua" placeholder="Rua">
+            <label>Rua</label>
+            <input type="text" class="form-control" name="rua" [(ngModel)]="opcao.endereco.rua" placeholder="Rua">
           </div>
           <div class="col">
-            <input type="text" class="form-control" name="numero" placeholder="Número">
+            <label>numero</label>
+            <input type="text" class="form-control" name="numero" [(ngModel)]="opcao.endereco.numero" placeholder="Número">
           </div>
           <div class="col">
-              <input type="text" class="form-control" name="complemento" placeholder="Complemento">
+            <label>complemento</label>
+              <input type="text" class="form-control" name="complemento" [(ngModel)]="opcao.endereco.complemento" placeholder="Complemento">
             </div>
-        </div> -->
+        </div> 
     <br>
     <button class="btn btn-primary" type="submit">Salvar</button>
+    
   </form>

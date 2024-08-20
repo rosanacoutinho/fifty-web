@@ -14,15 +14,14 @@ export class AccountService {
  
   creciValido: boolean = false;
 
-  login(user: any)  {
+  login(user: any) : Observable<any>   {
       const url = `${environment.api}/senhas/validar`;
       const body = { creci: user.creci,
                       senha: user.password
         };
       
-      this.http.post(url, body).subscribe(
-        response => { console.log(response);}
-      );
+      const result = this.http.post<any>(url, body);
+      return result;
   }
 
 
@@ -31,7 +30,7 @@ export class AccountService {
     return result;
   }
 
-  createAccount(account: any) {
+  createAccount(account: any) : Observable<any> {
     const url = `${environment.api}/corretores`;
       const body = { 
         id: null,
@@ -42,7 +41,7 @@ export class AccountService {
         senha: account.senha,
         };
     
-    return this.http.post(url, body);
+    return this.http.post<any>(url, body);
   }
 
   getAuthorizationToken() {

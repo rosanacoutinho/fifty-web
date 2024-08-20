@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -19,7 +20,8 @@ export class CreateAccountComponent implements OnInit {
   creciValido: boolean = false;
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,14 +29,14 @@ export class CreateAccountComponent implements OnInit {
   }
 
   verificaCreci(  ){
-    // this.accountService.verificaCreci( this.account.creci ).subscribe(response => { 
-    //   this.creciValido = true;
-    //   this.account.creci=response.creci
-    //   this.account.nome= response.nome
-    // }, error => {
-    //   console.error('Erro:', error);
-    //   alert("Ops! Algo deu errado" )
-    // });
+     //this.accountService.verificaCreci( this.account.creci ).subscribe(response => { 
+     // this.creciValido = true;
+     //  this.account.creci=response.creci
+     //  this.account.nome= response.nome
+     //}, error => {
+     //  console.error('Erro:', error);
+     //  alert("Ops! Algo deu errado" )
+     //});
   
       this.creciValido = true;
       this.account.creci='96644'
@@ -44,14 +46,12 @@ export class CreateAccountComponent implements OnInit {
 
 
    onSubmit() {
-      const result =  this.accountService.createAccount(this.account).subscribe(response => {     
+      this.accountService.createAccount(this.account).subscribe(response => {
+        alert("Usuário cadastrado com sucesso!" ),
+        this.router.navigate(['/login']);     
         }, error => {
           console.error(error);
           alert("Este usuario ja esta cadastrado" )
         });   
-    }
-
-
-
-
+      }
 }

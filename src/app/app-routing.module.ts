@@ -22,6 +22,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path:"login", component: LoginComponent},
+      {path:"home", component: HomeComponent},
       {path:"create-account", component: CreateAccountComponent},
       {path:"listaopcao", component: OpcaoListComponent},
       {path:"novaopcao", component: OpcaoFormComponent},
