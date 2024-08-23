@@ -12,10 +12,5 @@ export interface Opcao {
         suite: number,     
         banheiro: number,
         vagaGaragem: number,
-        sala: number,
-        cozinha: number,
-        dependencia: number,
-        varanda: number,
-        areaServico: number,
-        andar: number
+        varanda: number
  }

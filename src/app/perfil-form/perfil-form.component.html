@@ -1,0 +1,94 @@
+<form (ngSubmit)="onSubmit()">
+    <h2>{{isEditing? 'Editar' : 'Criar'}} Perfil</h2>
+      <br>
+      <div class="form-row">
+        <div class="col">
+          <label>Nome</label>
+          <input type="text" class="form-control" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" placeholder="Digite aqui um nome para identificar sua Perfil">
+        </div>
+        <div class="col">
+          <label>Tipo Imovel</label>
+          <input type="text" class="form-control" name="tipo" [(ngModel)]="perfil.tipo" placeholder="Tipo">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label>Valor Minimo (R$)</label>
+          <input type="text" class="form-control" name="valor" [(ngModel)]="perfil.valorMinimo" placeholder="Mínimo">
+        </div>
+        <div class="col">
+            <label>Valor Maximo (R$)</label>
+            <input type="text" class="form-control" name="valor" [(ngModel)]="perfil.valorMaximo" placeholder="Máximo">
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="col">
+            <label>Area Minima (m2)</label>
+            <input type="text" class="form-control" name="area" [(ngModel)]="perfil.areaMinima" placeholder="Mínimo">
+          </div>
+          <div class="col">
+            <label>Area Maxima (m2)</label>
+            <input type="text" class="form-control" name="area" [(ngModel)]="perfil.areaMaxima" placeholder="Máxima">
+          </div>
+          <div class="col">
+            <label>Quartos</label>
+            <input type="text" class="form-control" name="quarto" [(ngModel)]="perfil.quantidadeQuartoMinimo" placeholder="Quarto">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+              <label>Banheiros</label>
+              <input type="text" class="form-control" name="banheiro" [(ngModel)]="perfil.quantidadeBanheiroMinimo" placeholder="Banheiro">
+            </div>
+            <div class="col">
+              <label>Garagem</label>
+              <input type="text" class="form-control" name="vagaGaragem" [(ngModel)]="perfil.quantidadeVagaMinima" placeholder="Vaga">
+            </div>
+            <div class="col">
+              <label>Varanda</label>
+              <input type="text" class="form-control" name="varanda" [(ngModel)]="perfil.varanda" placeholder="Varanda">
+            </div>
+          </div>
+      <br>
+      <br>
+      <h3>Endereço</h3>
+
+    <div *ngFor="let endereco of perfil.enderecos; let i = index" >          
+      <div class="form-row">     
+        <div class="col">
+          <label>Cep</label>
+           <input type="text" class="form-control" name="cep" [(ngModel)]="perfil.enderecos[i].cep" name="endereco{{i}}.cep" placeholder="CEP">
+        </div>
+       <div class="col">
+         <label>Pais</label>
+         <input type="text" class="form-control" name="pais" [(ngModel)]="perfil.enderecos[i].pais" name="endereco{{i}}.pais" placeholder="País">
+       </div>
+       <div class="col">
+         <label>Estado</label>
+         <input type="text" class="form-control" name="estado" [(ngModel)]="perfil.enderecos[i].estado"  name="endereco{{i}}.estado" placeholder="Estado">
+       </div>
+       <div class="col">
+         <label>Cidade</label>
+           <input type="text" class="form-control" name="cidade" [(ngModel)]="perfil.enderecos[i].cidade" name="endereco{{i}}.cidade" placeholder="Cidade">
+         </div>    
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label>Bairro</label>
+          <input type="text" class="form-control"  [(ngModel)]="perfil.enderecos[i].bairro" name="endereco{{i}}.bairro" >
+        </div>
+        <div class="col">
+          <label>Rua</label>
+          <input type="text"  class="form-control"  [(ngModel)]="perfil.enderecos[i].rua" name="endereco{{i}}.rua" >
+        </div>
+    </div>
+     
+    </div>
+       
+      <br>
+      <button class="btn btn-primary" type="submit">Salvar</button>
+      
+</form>
+  
+<button class="btn btn-primary" (click)="adicionarEndereco()">+ Add Endereco</button>

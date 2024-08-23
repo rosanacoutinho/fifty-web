@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OpcaoService } from '../opcao/opcao.service';
 import { Opcao } from '../models/opcao';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserDataService } from '../account/create-account/user-data.service';
 
 @Component({
   selector: 'app-opcao-form',
@@ -11,15 +12,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OpcaoFormComponent implements OnInit{
 
+  id_corretor=''
+
  opcao: Opcao = {
   id:'' ,
-  idCorretor:"ab125546-8794-4005-81c9-973242db3b42",
+  idCorretor:this.id_corretor,
   nomeOpcao: '',
   tipo: '',
   valor: 0,
   area: 0,
   quarto: 0,
   endereco: {
+    id:'',
     cep: '',
     pais:'',
     estado:'',
@@ -32,30 +36,32 @@ export class OpcaoFormComponent implements OnInit{
   suite: 0,
   banheiro: 0,
   vagaGaragem: 0,
-  sala: 0,
-  cozinha: 0,
-  dependencia: 0,
   varanda: 0,
-  areaServico: 0,
-  andar: 0
  }
 
+  
+
+ 
  isEditing: boolean = false;
 
  constructor(
   private formbuilder: FormBuilder,
   private opcaoService: OpcaoService,
   private router: Router,
-  private route: ActivatedRoute){ }
+  private route: ActivatedRoute,
+  private userDataService: UserDataService){ }
 
  
  ngOnInit(): void {
+
+   this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
+
     this.route.paramMap.subscribe({
     next: (response) => {
     const id = response.get('id');
     if(id){
       this.isEditing = true;
-      this.opcaoService.getOpcao(id).subscribe({
+      this.opcaoService.getOpcao(this.id_corretor).subscribe({
         next: (response) => this.opcao = response,
         error: (err) => console.error("Erro ao carregar opção", err)
       })

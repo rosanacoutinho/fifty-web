@@ -29,18 +29,18 @@ export class CreateAccountComponent implements OnInit {
   }
 
   verificaCreci(  ){
-     //this.accountService.verificaCreci( this.account.creci ).subscribe(response => { 
-     // this.creciValido = true;
-     //  this.account.creci=response.creci
-     //  this.account.nome= response.nome
-     //}, error => {
-     //  console.error('Erro:', error);
-     //  alert("Ops! Algo deu errado" )
-     //});
+     this.accountService.verificaCreci( this.account.creci ).subscribe(response => { 
+     this.creciValido = true;
+      this.account.creci=response.creci
+      this.account.nome= response.nome
+     }, error => {
+      console.error('Erro:', error);
+      alert("Ops! Algo deu errado" )
+     });
   
-      this.creciValido = true;
-      this.account.creci='96644'
-      this.account.nome= 'ROSANA DE PAULA COUTINHO BARROS'
+      // this.creciValido = true;
+      // this.account.creci='96644'
+      // this.account.nome= 'ROSANA DE PAULA COUTINHO BARROS'
     return true;
   }
 

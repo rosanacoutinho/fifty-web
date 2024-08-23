@@ -1,36 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { OpcaoService } from '../opcao/opcao.service';
-import { Opcao } from '../models/opcao';
+import { Perfil } from '../models/perfil';
 import { Router } from '@angular/router';
+import { PerfilService } from '../perfil/perfil.service';
 import { UserDataService } from '../account/create-account/user-data.service';
 
 @Component({
-  selector: 'app-opcao-list',
-  templateUrl: './opcao-list.component.html',
-  styleUrls: ['./opcao-list.component.css']
+  selector: 'app-perfil-list',
+  templateUrl: './perfil-list.component.html',
+  styleUrls: ['./perfil-list.component.css']
 })
-export class OpcaoListComponent implements OnInit {
+export class PerfilListComponent implements OnInit {
 
- opcoes: Opcao[] = [];
+ perfis: Perfil[] = [];
 
- id_corretor= ''
+
+
+ id_corretor=''
 
  constructor(
-   private opcaoService: OpcaoService,
+   private perfilService: PerfilService,
    private router: Router,
    private userDataService: UserDataService){}
 
  ngOnInit(): void {
   this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
-  this.buscarOpcoes(this.id_corretor);
+  this.buscarPerfis(this.id_corretor);
 }
 
-  deleteOpcao(id: string): void {
-    this.opcaoService.deleteOpcao(id).subscribe({
+  deletePerfil(id: string): void {
+    this.perfilService.deletePerfil(id).subscribe({
       next: () => {
         console.log(`Item com ID ${id} deletado com sucesso`);
-        alert("Opção excuída com sucesso!");
-        this.buscarOpcoes(this.id_corretor);
+        alert("Perfil excuído com sucesso!");
+        this.buscarPerfis(this.id_corretor);
       },
       error: (err) => {
         console.error('Erro ao deletar item:', err);
@@ -41,10 +43,11 @@ export class OpcaoListComponent implements OnInit {
   });
 }
 
-buscarOpcoes(id_corretor: string):void{
-    this.opcaoService.getOpcoes(this.id_corretor).subscribe({
+  buscarPerfis(id_corretor: string):void{
+    this.perfilService.getPerfis(this.id_corretor).subscribe({
       next: (response) => {
-        this.opcoes = response;
+        this.perfis = response;
+        console.log(response)
       },
       error: (err) => {
         console.error('Erro ao obter dados:', err);
