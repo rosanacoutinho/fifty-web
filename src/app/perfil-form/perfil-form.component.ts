@@ -19,7 +19,7 @@ export class PerfilFormComponent implements OnInit{
   id:'' ,
   idCorretor: '',
   nomePerfil: '',
-  tipo: '',
+  tipo: 'APARTAMENTO',
   valorMinimo: 0,
   valorMaximo: 0,
   areaMinima: 0,
@@ -41,39 +41,29 @@ export class PerfilFormComponent implements OnInit{
 
  
  ngOnInit(): void {
-
+    //obter o id do corretor via servico
     this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
 
-    this.perfil.enderecos[0] =
-    {
-    id:'',
-    cep: '',
-    pais: '',
-    estado: '',
-    cidade: '',
-    bairro: '',
-    rua: '',
-    numero: 0,
-    complemento: ''
-  }
+    //carregar estados para tela  (em construcao)
+    this.perfilService.getEstadosBrasileiros().subscribe({
+      next: (response) => {console.log(response) },
+      error: (err) => console.error("Erro ao carregar estados", err)
+    })
 
-  //falta ajeitar aqui a parte q diz se ta editando ou 
-  //adicionando, desculpa a caca, mo! Te amo.
-  this.isEditing = false;
+    //adicionando um endereco vazio ao array do Perfil 
+    this.adicionarEndereco()
 
     this.route.paramMap.subscribe({
     next: (response) => {
-    //const id = response.get('id');
-    //if(id){
-      
-      this.perfilService.getPerfil(this.id_corretor).subscribe({
-        next: (response) => {this.perfil = response,
-          console.log(this.perfil)
-        },
+    const id = response.get('id');
+    if(id){
+      this.isEditing = true;
+      this.perfilService.getPerfil(id).subscribe({
+        next: (response) => {this.perfil = response },
         error: (err) => console.error("Erro ao carregar perfil", err)
       })
-    //} else{
-    //}
+    } else{
+    }
   }});
   }
 
@@ -83,12 +73,12 @@ export class PerfilFormComponent implements OnInit{
       {
       id:'',
       cep: '',
-      pais: '',
-      estado: '',
-      cidade: '',
+      pais: 'Brasil',
+      estado: 'RJ',
+      cidade: 'Rio de Janeiro',
       bairro: '',
       rua: '',
-      numero: 0,
+      numero: '',
       complemento: ''
     }
   }
@@ -97,7 +87,6 @@ export class PerfilFormComponent implements OnInit{
  onSubmit(){
 
   if(this.isEditing){
-    console.log('ENTROU NA EDICAO')
     this.perfilService.updatePerfil(this.perfil)
     .subscribe({
       next: () => {
@@ -108,7 +97,6 @@ export class PerfilFormComponent implements OnInit{
       }
     });}
     else{   
-      console.log('NTROU NA INCLUSAO') 
       this.perfil.idCorretor = this.id_corretor
       this.perfilService.addPerfil(this.perfil).subscribe({
       next: () => { this.router.navigate(['/listaperfil'])},
@@ -116,5 +104,13 @@ export class PerfilFormComponent implements OnInit{
         console.error(err);
       }
     });}
+}
+
+voltar(){
+  this.router.navigate(['/listaperfil'])
+}
+
+setTipoImoveis(tipo : string){
+  this.perfil.tipo = tipo
 }
 }

@@ -36,4 +36,16 @@ export class PerfilService {
     const url = `${environment.api}/perfis`;
     return this.http.put<Perfil>(url, perfil);
   }
+
+
+
+  getEstadosBrasileiros(): Observable<any>{
+    const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados`;
+    return this.http.get<any>(url);
+  }
+
+  getCidadesPorEstado(siglaEstado:string): Observable<any>{
+    const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${siglaEstado}/municipios`;
+    return this.http.get<any>(url);
+  }
 }

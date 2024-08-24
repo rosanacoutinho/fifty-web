@@ -7,42 +7,60 @@
         <input type="text" class="form-control" name="nomeOpcao" [(ngModel)]="opcao.nomeOpcao" placeholder="Digite aqui um nome para identificar sua opcao">
       </div>
       <div class="col">
-        <label>Tipo Imovel</label>
-        <input type="text" class="form-control" name="tipo" [(ngModel)]="opcao.tipo" placeholder="Tipo">
+        <label>Tipo Imóvel</label>
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{opcao.tipo}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="setTipoImoveis('APARTAMENTO')">APARTAMENTO</a>
+                <a class="dropdown-item" (click)="setTipoImoveis('COBERTURA')">COBERTURA</a>
+                <a class="dropdown-item" (click)="setTipoImoveis('COMERCIAL')">SALA COMERCIAL</a>
+                <a class="dropdown-item" (click)="setTipoImoveis('TERRENO')">TERRENO</a>
+              </div>
+            </div>
       </div>
       <div class="col">
         <label>Valor (R$)</label>
-        <input type="text" class="form-control" name="valor" [(ngModel)]="opcao.valor" placeholder="Valor">
+        <input type="text" class="form-control" name="valor" [(ngModel)]="opcao.valor" >
       </div>
     </div>
     <br>
     <div class="form-row">
         <div class="col">
-          <label>Area (m2)</label>
-          <input type="text" class="form-control" name="area" [(ngModel)]="opcao.area" placeholder="Area">
+          <label>Área (m2)</label>
+          <input type="text" class="form-control" name="area" [(ngModel)]="opcao.area" >
         </div>
         <div class="col">
           <label>Quarto</label>
-          <input type="text" class="form-control" name="quarto" [(ngModel)]="opcao.quarto" placeholder="Quarto">
+          <input type="number" class="form-control" name="quarto" [(ngModel)]="opcao.quarto" >
         </div>
         <div class="col">
-          <label>Suite</label>
-          <input type="text" class="form-control" name="suite" [(ngModel)]="opcao.suite" placeholder="Suíte">
+          <label>Suíte</label>
+          <input type="number" class="form-control" name="suite" [(ngModel)]="opcao.suite" >
         </div>
       </div>
       <br>
       <div class="form-row">
           <div class="col">
             <label>Banheiro</label>
-            <input type="text" class="form-control" name="banheiro" [(ngModel)]="opcao.banheiro" placeholder="Banheiro">
+            <input type="number" class="form-control" name="banheiro" [(ngModel)]="opcao.banheiro" >
           </div>
           <div class="col">
             <label>Garagem</label>
-            <input type="text" class="form-control" name="vagaGaragem" [(ngModel)]="opcao.vagaGaragem" placeholder="Vaga">
+            <input type="number" class="form-control" name="vagaGaragem" [(ngModel)]="opcao.vagaGaragem" >
           </div>
           <div class="col">
-            <label>Varanda</label>
-            <input type="text" class="form-control" name="varanda" [(ngModel)]="opcao.varanda" placeholder="Varanda">
+          <!-- <label>Varanda</label>
+            <input type="text" class="form-control" name="varanda" [(ngModel)]="opcao.varanda" >
+            -->
+            <label></label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="opcao.varanda" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Varanda
+                    </label>
+                  </div>
           </div>
         </div>
     <br>
@@ -52,42 +70,51 @@
    <div class="form-row">
         <div class="col">
            <label>Cep</label>
-            <input type="text" class="form-control" name="cep" [(ngModel)]="opcao.endereco.cep" placeholder="CEP">
-          </div>
+            <input type="text" class="form-control" name="cep" [(ngModel)]="opcao.endereco.cep" placeholder="00000000">
+            <button class="btn btn-outline-info btn-sm" (click)=buscarCEP() type="button">Buscar</button>
+            <button class="btn btn-outline-info btn-sm" (click)=cleanCEPinfo() type="button">Limpar dados</button>
+          </div> 
+        
         <div class="col">
-          <label>Pais</label>
-          <input type="text" class="form-control" name="pais" [(ngModel)]="opcao.endereco.pais" placeholder="País">
+          <label>País</label>
+          <input type="text" class="form-control" name="pais" [(ngModel)]="opcao.endereco.pais" 
+           [disabled]="true">
         </div>
         <div class="col">
           <label>Estado</label>
-          <input type="text" class="form-control" name="estado" [(ngModel)]="opcao.endereco.estado"  placeholder="Estado">
+          <input type="text" class="form-control" name="estado" [(ngModel)]="opcao.endereco.estado"  
+           [disabled]="true">
         </div>
         <div class="col">
           <label>Cidade</label>
-            <input type="text" class="form-control" name="cidade" [(ngModel)]="opcao.endereco.cidade" placeholder="Cidade">
+            <input type="text" class="form-control" name="cidade" [(ngModel)]="opcao.endereco.cidade" 
+             [disabled]="true">
           </div>
       </div>
       <br>
       <div class="form-row">
           <div class="col">
             <label>Bairro</label>
-            <input type="text" class="form-control" name="bairro" [(ngModel)]="opcao.endereco.bairro" placeholder="Bairro">
+            <input type="text" class="form-control" name="bairro" [(ngModel)]="opcao.endereco.bairro" 
+             [disabled]="true">
           </div>
           <div class="col">
             <label>Rua</label>
-            <input type="text" class="form-control" name="rua" [(ngModel)]="opcao.endereco.rua" placeholder="Rua">
+            <input type="text" class="form-control" name="rua" [(ngModel)]="opcao.endereco.rua" 
+             [disabled]="true">
           </div>
           <div class="col">
-            <label>numero</label>
-            <input type="text" class="form-control" name="numero" [(ngModel)]="opcao.endereco.numero" placeholder="Número">
+            <label>Número</label>
+            <input type="text" class="form-control" name="numero" [(ngModel)]="opcao.endereco.numero" >
           </div>
           <div class="col">
-            <label>complemento</label>
-              <input type="text" class="form-control" name="complemento" [(ngModel)]="opcao.endereco.complemento" placeholder="Complemento">
+            <label>Complemento</label>
+              <input type="text" class="form-control" name="complemento" [(ngModel)]="opcao.endereco.complemento" placeholder="apto">
             </div>
         </div> 
     <br>
 
-    <button class="btn btn-primary" type="submit">Salvar</button>
+    <button class="btn btn-primary"  type="submit">Salvar</button>
+    <button class="btn btn-outline-primary"  (click)="voltar()">Voltar</button>
     
   </form>

@@ -36,4 +36,11 @@ export class OpcaoService {
     const url = `${environment.api}/opcoes`;
     return this.http.put<Opcao>(url, opcao);
   }
+
+
+  getCEP(cep:string): Observable<any>{
+    const url = `https://brasilapi.com.br/api/cep/v1/${cep}`;
+    return this.http.get<any>(url);
+  }
+
 }

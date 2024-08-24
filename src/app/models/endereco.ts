@@ -6,6 +6,6 @@ export interface Endereco {
     cidade: string,
     bairro: string,
     rua: string,
-    numero: number,
+    numero: string,
     complemento: string
 }

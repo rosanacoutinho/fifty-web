@@ -4,6 +4,7 @@ import { OpcaoService } from '../opcao/opcao.service';
 import { Opcao } from '../models/opcao';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../account/create-account/user-data.service';
+import { GeralService } from '../services/geral.service';
 
 @Component({
   selector: 'app-opcao-form',
@@ -16,31 +17,31 @@ export class OpcaoFormComponent implements OnInit{
 
  opcao: Opcao = {
   id:'' ,
-  idCorretor:this.id_corretor,
+  idCorretor:'',
   nomeOpcao: '',
-  tipo: '',
+  tipo: 'APARTAMENTO',
   valor: 0,
   area: 0,
-  quarto: 0,
+  quarto:'',
   endereco: {
     id:'',
     cep: '',
-    pais:'',
+    pais:'Brasil',
     estado:'',
     cidade: '',
     bairro:'',
     rua:'',
-    numero: 0,
+    numero: '',
     complemento: '',
   },
-  suite: 0,
-  banheiro: 0,
-  vagaGaragem: 0,
+  suite: '',
+  banheiro: '',
+  vagaGaragem: '',
   varanda: 0,
  }
 
+ tiposImoveis: [] = []; 
   
-
  
  isEditing: boolean = false;
 
@@ -49,25 +50,34 @@ export class OpcaoFormComponent implements OnInit{
   private opcaoService: OpcaoService,
   private router: Router,
   private route: ActivatedRoute,
-  private userDataService: UserDataService){ }
+  private userDataService: UserDataService,
+  private geralService : GeralService){ }
 
  
  ngOnInit(): void {
 
+  //obter o id do corretor via servico
    this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
+
+   //tras tipo de imoveis 
+   this.geralService.getTiposImoveis().subscribe({
+    next: (response) => this.tiposImoveis = response,
+    error: (err) => console.error("Erro ao carregar opção", err)
+  })
 
     this.route.paramMap.subscribe({
     next: (response) => {
     const id = response.get('id');
     if(id){
       this.isEditing = true;
-      this.opcaoService.getOpcao(this.id_corretor).subscribe({
+      this.opcaoService.getOpcao(id).subscribe({
         next: (response) => this.opcao = response,
         error: (err) => console.error("Erro ao carregar opção", err)
       })
     } else{
     }
   }});
+
   }
 
 
@@ -84,7 +94,7 @@ export class OpcaoFormComponent implements OnInit{
       }
     });}
     else{
-      
+      this.opcao.idCorretor= this.id_corretor
       console.log(this.opcao)
     this.opcaoService.addOpcao(this.opcao).subscribe({
       next: () => { this.router.navigate(['/listaopcao'])},
@@ -93,4 +103,34 @@ export class OpcaoFormComponent implements OnInit{
       }
     });}
 }
+
+      buscarCEP(){   
+        this.opcaoService.getCEP(this.opcao.endereco.cep).subscribe({
+          next: (response) => {
+            this.opcao.endereco.estado=response.state,
+            this.opcao.endereco.cidade=response.city,
+            this.opcao.endereco.bairro=response.neighborhood,
+            this.opcao.endereco.rua=response.street},
+          error: (err) => { console.error("CEP nao encontrado", err),
+              alert("CEP nao encontrado")
+          }
+        });
+
+      }
+
+      cleanCEPinfo(){
+        this.opcao.endereco.estado= "",
+        this.opcao.endereco.cidade= "",
+        this.opcao.endereco.bairro= "",
+        this.opcao.endereco.rua= "",
+        this.opcao.endereco.cep= ""
+      }
+
+      voltar(){
+        this.router.navigate(['/listaopcao'])
+      }
+
+      setTipoImoveis(tipo : string){
+        this.opcao.tipo = tipo
+      }
 }

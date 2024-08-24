@@ -4,44 +4,54 @@
       <div class="form-row">
         <div class="col">
           <label>Nome</label>
-          <input type="text" class="form-control" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" placeholder="Digite aqui um nome para identificar sua Perfil">
+          <input type="text" class="form-control" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" placeholder="Digite aqui um nome para identificar seu Perfil">
         </div>
         <div class="col">
-          <label>Tipo Imovel</label>
-          <input type="text" class="form-control" name="tipo" [(ngModel)]="perfil.tipo" placeholder="Tipo">
+          <label>Tipo Imóvel</label>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{perfil.tipo}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="setTipoImoveis('APARTAMENTO')">APARTAMENTO</a>
+                  <a class="dropdown-item" (click)="setTipoImoveis('COBERTURA')">COBERTURA</a>
+                  <a class="dropdown-item" (click)="setTipoImoveis('COMERCIAL')">SALA COMERCIAL</a>
+                  <a class="dropdown-item" (click)="setTipoImoveis('TERRENO')">TERRENO</a>
+                </div>
+              </div>
         </div>
       </div>
       <div class="form-row">
         <div class="col">
-          <label>Valor Minimo (R$)</label>
-          <input type="text" class="form-control" name="valor" [(ngModel)]="perfil.valorMinimo" placeholder="Mínimo">
+          <label>Preço Mínimo (R$)</label>
+          <input type="text" class="form-control" name="valorMinimo" [(ngModel)]="perfil.valorMinimo" >
         </div>
         <div class="col">
-            <label>Valor Maximo (R$)</label>
-            <input type="text" class="form-control" name="valor" [(ngModel)]="perfil.valorMaximo" placeholder="Máximo">
+            <label>Preço Máximo (R$)</label>
+            <input type="text" class="form-control" name="valorMaximo" [(ngModel)]="perfil.valorMaximo" >
           </div>
       </div>
       <div class="form-row">
           <div class="col">
-            <label>Area Minima (m2)</label>
-            <input type="text" class="form-control" name="area" [(ngModel)]="perfil.areaMinima" placeholder="Mínimo">
+            <label>Área Mínima (m2)</label>
+            <input type="text" class="form-control" name="areaMinima" [(ngModel)]="perfil.areaMinima" >
           </div>
           <div class="col">
-            <label>Area Maxima (m2)</label>
-            <input type="text" class="form-control" name="area" [(ngModel)]="perfil.areaMaxima" placeholder="Máxima">
-          </div>
-          <div class="col">
-            <label>Quartos</label>
-            <input type="text" class="form-control" name="quarto" [(ngModel)]="perfil.quantidadeQuartoMinimo" placeholder="Quarto">
+            <label>Área Máxima (m2)</label>
+            <input type="text" class="form-control" name="areaMaxima" [(ngModel)]="perfil.areaMaxima" >
           </div>
         </div>
         <div class="form-row">
+          <div class="col">
+            <label>Quartos (apartir de)</label>
+            <input type="text" class="form-control" name="quarto" [(ngModel)]="perfil.quantidadeQuartoMinimo" placeholder="Quarto">
+          </div>
             <div class="col">
-              <label>Banheiros</label>
+              <label>Banheiros (apartir de)</label>
               <input type="text" class="form-control" name="banheiro" [(ngModel)]="perfil.quantidadeBanheiroMinimo" placeholder="Banheiro">
             </div>
             <div class="col">
-              <label>Garagem</label>
+              <label>Garagem (apartir de)</label>
               <input type="text" class="form-control" name="vagaGaragem" [(ngModel)]="perfil.quantidadeVagaMinima" placeholder="Vaga">
             </div>
             <div class="col">
@@ -55,13 +65,11 @@
 
     <div *ngFor="let endereco of perfil.enderecos; let i = index" >          
       <div class="form-row">     
-        <div class="col">
-          <label>Cep</label>
-           <input type="text" class="form-control" name="cep" [(ngModel)]="perfil.enderecos[i].cep" name="endereco{{i}}.cep" placeholder="CEP">
-        </div>
        <div class="col">
-         <label>Pais</label>
-         <input type="text" class="form-control" name="pais" [(ngModel)]="perfil.enderecos[i].pais" name="endereco{{i}}.pais" placeholder="País">
+         <label>País</label>
+         <input type="text" class="form-control" name="pais"
+          [(ngModel)]="perfil.enderecos[i].pais" name="endereco{{i}}.pais" 
+          placeholder="País" [disabled]="true">
        </div>
        <div class="col">
          <label>Estado</label>
@@ -78,17 +86,16 @@
           <label>Bairro</label>
           <input type="text" class="form-control"  [(ngModel)]="perfil.enderecos[i].bairro" name="endereco{{i}}.bairro" >
         </div>
-        <div class="col">
-          <label>Rua</label>
-          <input type="text"  class="form-control"  [(ngModel)]="perfil.enderecos[i].rua" name="endereco{{i}}.rua" >
-        </div>
     </div>
-     
+    
     </div>
-       
+    <br>
+    <button class="btn btn-outline-info btn-sm" type="button" (click)="adicionarEndereco()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+    </svg> Endereço </button>
+    <br>
       <br>
       <button class="btn btn-primary" type="submit">Salvar</button>
-      
+      <button class="btn btn-outline-primary"  (click)="voltar()">Voltar</button>
 </form>
   
-<button class="btn btn-primary" (click)="adicionarEndereco()">+ Add Endereco</button>

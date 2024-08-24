@@ -8,9 +8,9 @@ export interface Opcao {
         area: number,
         endereco: Endereco,
         nomeOpcao: string,
-        quarto: number,
-        suite: number,     
-        banheiro: number,
-        vagaGaragem: number,
+        quarto: string,
+        suite: string,     
+        banheiro: string,
+        vagaGaragem: string,
         varanda: number
  }
