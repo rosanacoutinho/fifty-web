@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     id:'',
     creci: '',
     nome : '', 
-    password: ''
+    senha: ''
   };
 
   ngOnInit(): void {

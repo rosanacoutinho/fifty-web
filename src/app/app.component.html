@@ -23,10 +23,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle" [routerLink]="['/create-account']">Meu Cadastro</a>
+                        <a href="#" class="nav-link px-0 align-middle" [routerLink]="['/create-account', user.id]">Meu Cadastro</a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
+                        <a href class="nav-link px-0 align-middle"  [routerLink]="['/login']" (click)="logOut()">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Sair</span></a>
                     </li>
                 </ul>
@@ -36,15 +36,6 @@
                         <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
                         <span class="d-none d-sm-inline mx-1">{{user.nome}}</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
                 </div>
             </div>
         </div>

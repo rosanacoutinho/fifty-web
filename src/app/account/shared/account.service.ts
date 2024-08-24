@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class AccountService {
   login(user: any) : Observable<any>   {
       const url = `${environment.api}/senhas/validar`;
       const body = { creci: user.creci,
-                      senha: user.password
+                      senha: user.senha
         };
       
       const result = this.http.post<any>(url, body);
@@ -30,18 +31,18 @@ export class AccountService {
     return result;
   }
 
-  createAccount(account: any) : Observable<any> {
+  createAccount(user: User) : Observable<any> {
+    const url = `${environment.api}/corretores`;   
+    return this.http.post<any>(url, user);
+  }
+
+  getAccount(id:string): Observable<any>{
+    const url = `${environment.api}/corretores/${id}`;
+    return this.http.get<any>(url);
+  }
+  updateAccount(user: User): Observable<User> {
     const url = `${environment.api}/corretores`;
-      const body = { 
-        id: null,
-        nome: account.nome,
-        email: account.email,
-        telefone: account.telefone,
-        creci: account.creci,
-        senha: account.senha,
-        };
-    
-    return this.http.post<any>(url, body);
+    return this.http.put<User>(url, user);
   }
 
   getAuthorizationToken() {

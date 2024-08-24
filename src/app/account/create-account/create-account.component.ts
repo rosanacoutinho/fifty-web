@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -18,13 +18,30 @@ export class CreateAccountComponent implements OnInit {
   };
 
   creciValido: boolean = false;
+  isEditing: boolean = false;
 
   constructor(
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe({
+      next: (response) => {
+      const id = response.get('id')
+      console.log(id)
+      if(id){
+        console.log(this.isEditing)
+        this.creciValido = true,
+        this.isEditing = true,
+        this.accountService.getAccount(id).subscribe({
+          next: (response) => {this.account = response },
+          error: (err) => console.error("Erro ao carregar usuário", err)
+        })
+      } else{
+      }
+    }});
    
   }
 
@@ -46,12 +63,26 @@ export class CreateAccountComponent implements OnInit {
 
 
    onSubmit() {
+    if(this.isEditing){
+      this.accountService.updateAccount(this.account) //no back, update Corretor nao manda a senha. Ta certo assim?
+      .subscribe({
+        next: () => {
+          alert("Dados atualizados com sucesso!")
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });}
+    else{
       this.accountService.createAccount(this.account).subscribe(response => {
         alert("Usuário cadastrado com sucesso!" ),
         this.router.navigate(['/login']);     
         }, error => {
+          console.log(this.account)
           console.error(error);
           alert("Este usuario ja esta cadastrado" )
         });   
       }
+    }
+      
 }

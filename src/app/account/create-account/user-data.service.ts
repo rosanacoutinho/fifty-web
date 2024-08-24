@@ -10,7 +10,9 @@ export class UserDataService {
     id:'',
     creci: '',
     nome : '', 
-    password: ''
+    email: '',
+    telefone: '',
+    senha: ''
   };
 
   private dataSource = new BehaviorSubject<User>(this.user);

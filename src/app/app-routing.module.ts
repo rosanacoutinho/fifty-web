@@ -20,7 +20,8 @@ const routes: Routes = [
   {path:"editarOpcao/:id", component: OpcaoFormComponent, canActivate: [AuthGuard]},
   {path:"listaperfil", component: PerfilListComponent, canActivate: [AuthGuard]},
   {path:"novoperfil", component: PerfilFormComponent, canActivate: [AuthGuard]},
-  {path:"editarPerfil/:id", component: PerfilFormComponent, canActivate: [AuthGuard]}
+  {path:"editarPerfil/:id", component: PerfilFormComponent, canActivate: [AuthGuard]},
+  {path:"create-account/:id", component: CreateAccountComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
