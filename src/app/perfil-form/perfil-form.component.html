@@ -40,23 +40,45 @@
             <label>Área Máxima (m2)</label>
             <input type="text" class="form-control" name="areaMaxima" [(ngModel)]="perfil.areaMaxima" >
           </div>
+       </div>
+
+       <div class="form-row">
+        <div class="col">
+          <label>Iptu Anual Máximo (R$)</label>
+          <input type="text" class="form-control" name="valorMaximoIptu" [(ngModel)]="perfil.valorMaximoIptu" >
         </div>
+        <div class="col">
+          <label>Condomínio Mensal Máximo (R$)</label>
+          <input type="text" class="form-control" name="valorMaximoCondominio" [(ngModel)]="perfil.valorMaximoCondominio" >
+        </div>
+      </div>
+      <br>
         <div class="form-row">
           <div class="col">
             <label>Quartos (apartir de)</label>
-            <input type="text" class="form-control" name="quarto" [(ngModel)]="perfil.quantidadeQuartoMinimo" placeholder="Quarto">
+            <input type="number" class="form-control" name="quarto" [(ngModel)]="perfil.quantidadeQuartoMinimo">
+          </div>
+          <div class="col">
+            <label>Suites (apartir de)</label>
+            <input type="number" class="form-control" name="quantidadeSuiteMinima" [(ngModel)]="perfil.quantidadeSuiteMinima">
           </div>
             <div class="col">
               <label>Banheiros (apartir de)</label>
-              <input type="text" class="form-control" name="banheiro" [(ngModel)]="perfil.quantidadeBanheiroMinimo" placeholder="Banheiro">
+              <input type="number" class="form-control" name="banheiro" [(ngModel)]="perfil.quantidadeBanheiroMinimo" >
             </div>
             <div class="col">
               <label>Garagem (apartir de)</label>
-              <input type="text" class="form-control" name="vagaGaragem" [(ngModel)]="perfil.quantidadeVagaMinima" placeholder="Vaga">
+              <input type="number" class="form-control" name="vagaGaragem" [(ngModel)]="perfil.quantidadeVagaMinima" >
             </div>
+           
             <div class="col">
-              <label>Varanda</label>
-              <input type="text" class="form-control" name="varanda" [(ngModel)]="perfil.varanda" placeholder="Varanda">
+              <br>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="varanda" [(ngModel)]="perfil.varanda" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Varanda
+                </label>
+              </div>
             </div>
           </div>
       <br>
@@ -93,6 +115,8 @@
     <button class="btn btn-outline-info btn-sm" type="button" (click)="adicionarEndereco()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
     </svg> Endereço </button>
+    <button class="btn btn-outline-info btn-sm" type="button" (click)="removeEndereco()">
+      - Endereço </button>
     <br>
       <br>
       <button class="btn btn-primary" type="submit">Salvar</button>

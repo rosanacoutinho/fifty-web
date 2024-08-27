@@ -26,8 +26,11 @@ export class PerfilFormComponent implements OnInit{
   areaMaxima:0,
   quantidadeVagaMinima: 0, 
 	quantidadeQuartoMinimo: 0, 
+  quantidadeSuiteMinima: 0, 
 	quantidadeBanheiroMinimo: 0, 
-	varanda: 0,
+	varanda: false,
+  valorMaximoIptu: 0,
+  valorMaximoCondominio: 0,
   enderecos: []}
 
  isEditing: boolean = false;
@@ -80,6 +83,12 @@ export class PerfilFormComponent implements OnInit{
       rua: '',
       numero: '',
       complemento: ''
+    }
+  }
+
+  removeEndereco(){
+    if (this.perfil.enderecos.length > 1){  
+    this.perfil.enderecos.pop()
     }
   }
 

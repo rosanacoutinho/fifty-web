@@ -12,5 +12,7 @@ export interface Opcao {
         suite: string,     
         banheiro: string,
         vagaGaragem: string,
-        varanda: number
+        varanda: boolean,
+        iptu: string,
+        condominio: string
  }

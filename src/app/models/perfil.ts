@@ -11,7 +11,10 @@ export interface Perfil {
         areaMinima: number, 
         areaMaxima: number, 
         quantidadeVagaMinima: number, 
-        quantidadeQuartoMinimo: number, 
+        quantidadeQuartoMinimo: number,
+        quantidadeSuiteMinima: number, 
         quantidadeBanheiroMinimo: number, 
-        varanda: number
+        varanda: boolean,
+        valorMaximoIptu: number,
+        valorMaximoCondominio: number
  }

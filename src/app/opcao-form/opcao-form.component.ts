@@ -37,12 +37,13 @@ export class OpcaoFormComponent implements OnInit{
   suite: '',
   banheiro: '',
   vagaGaragem: '',
-  varanda: 0,
+  varanda: false,
+  iptu: '',
+  condominio: ''
  }
 
  tiposImoveis: [] = []; 
   
- 
  isEditing: boolean = false;
 
  constructor(
@@ -79,8 +80,6 @@ export class OpcaoFormComponent implements OnInit{
   }});
 
   }
-
-
 
  onSubmit(){
   if(this.isEditing){

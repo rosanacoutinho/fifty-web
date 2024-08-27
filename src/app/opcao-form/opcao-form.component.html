@@ -20,9 +20,20 @@
               </div>
             </div>
       </div>
+    </div>
+    <br>
+    <div class="form-row">
       <div class="col">
         <label>Valor (R$)</label>
         <input type="text" class="form-control" name="valor" [(ngModel)]="opcao.valor" >
+      </div>
+      <div class="col">
+        <label>Iptu Anual (R$)</label>
+        <input type="text" class="form-control" name="iptu" [(ngModel)]="opcao.iptu" >
+      </div>
+      <div class="col">
+        <label>Condominio Mensal (R$)</label>
+        <input type="text" class="form-control" name="condominio" [(ngModel)]="opcao.condominio" >
       </div>
     </div>
     <br>
@@ -51,16 +62,12 @@
             <input type="number" class="form-control" name="vagaGaragem" [(ngModel)]="opcao.vagaGaragem" >
           </div>
           <div class="col">
-          <!-- <label>Varanda</label>
-            <input type="text" class="form-control" name="varanda" [(ngModel)]="opcao.varanda" >
-            -->
-            <label></label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="opcao.varanda" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Varanda
-                    </label>
-                  </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="varanda" [(ngModel)]="opcao.varanda" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Varanda
+              </label>
+            </div>
           </div>
         </div>
     <br>
