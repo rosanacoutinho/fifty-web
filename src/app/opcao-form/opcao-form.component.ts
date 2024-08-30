@@ -5,6 +5,7 @@ import { Opcao } from '../models/opcao';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../account/create-account/user-data.service';
 import { GeralService } from '../services/geral.service';
+import { TipoImovel } from '../models/tipoImovel';
 
 @Component({
   selector: 'app-opcao-form',
@@ -42,7 +43,7 @@ export class OpcaoFormComponent implements OnInit{
   condominio: ''
  }
 
- tiposImoveis: [] = []; 
+ tiposImoveis: TipoImovel[] = []; 
   
  isEditing: boolean = false;
 
@@ -62,10 +63,12 @@ export class OpcaoFormComponent implements OnInit{
 
    //tras tipo de imoveis 
    this.geralService.getTiposImoveis().subscribe({
-    next: (response) => this.tiposImoveis = response,
-    error: (err) => console.error("Erro ao carregar opção", err)
+    next: (response) => {this.tiposImoveis = response,
+      console.log(this.tiposImoveis)
+    },
+    error: (err) => console.error("Erro ao carregar tipos", err)
   })
-
+    
     this.route.paramMap.subscribe({
     next: (response) => {
     const id = response.get('id');

@@ -13,10 +13,9 @@
                 {{opcao.tipo}}
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" (click)="setTipoImoveis('APARTAMENTO')">APARTAMENTO</a>
-                <a class="dropdown-item" (click)="setTipoImoveis('COBERTURA')">COBERTURA</a>
-                <a class="dropdown-item" (click)="setTipoImoveis('COMERCIAL')">SALA COMERCIAL</a>
-                <a class="dropdown-item" (click)="setTipoImoveis('TERRENO')">TERRENO</a>
+                <li *ngFor="let tipo of tiposImoveis">
+                  <a class="dropdown-item" (click)="setTipoImoveis(tipo.tipo)">{{tipo.tipo}}</a>
+                </li>           
               </div>
             </div>
       </div>
