@@ -5,6 +5,9 @@ import { Perfil } from '../models/perfil';
 import { PerfilService } from '../perfil/perfil.service';
 import { Endereco } from '../models/endereco';
 import { UserDataService } from '../account/create-account/user-data.service';
+import { TipoImovel } from '../models/tipoImovel';
+import { GeralService } from '../services/geral.service';
+import { TipoNegocio } from '../models/tipoNegocio';
 
 @Component({
   selector: 'app-perfil-form',
@@ -20,6 +23,7 @@ export class PerfilFormComponent implements OnInit{
   idCorretor: '',
   nomePerfil: '',
   tipo: 'APARTAMENTO',
+  negocio: 'VENDA',    
   valorMinimo: 0,
   valorMaximo: 0,
   areaMinima: 0,
@@ -33,6 +37,8 @@ export class PerfilFormComponent implements OnInit{
   valorMaximoCondominio: 0,
   enderecos: []}
 
+ tiposImoveis: TipoImovel[] = []; 
+ tiposNegocios: TipoNegocio[] = []; 
  isEditing: boolean = false;
 
  constructor(
@@ -40,12 +46,29 @@ export class PerfilFormComponent implements OnInit{
   private perfilService: PerfilService,
   private router: Router,
   private route: ActivatedRoute,
-  private userDataService: UserDataService){ }
+  private userDataService: UserDataService,
+  private geralService : GeralService){ }
 
  
  ngOnInit(): void {
     //obter o id do corretor via servico
     this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
+
+  //tras tipo de imoveis 
+   this.geralService.getTiposImoveis().subscribe({
+    next: (response) => {this.tiposImoveis = response,
+      console.log(this.tiposImoveis)
+    },
+    error: (err) => console.error("Erro ao carregar tipos", err)
+  })
+
+       //tras tipo de negocios
+       this.geralService.getTiposNegocios().subscribe({
+        next: (response) => {this.tiposNegocios = response,
+          console.log(this.tiposNegocios)
+        },
+        error: (err) => console.error("Erro ao carregar tipos", err)
+      })
 
     //carregar estados para tela  (em construcao)
     this.perfilService.getEstadosBrasileiros().subscribe({
@@ -122,4 +145,9 @@ voltar(){
 setTipoImoveis(tipo : string){
   this.perfil.tipo = tipo
 }
+
+setTipoNegocio(negocio : string){
+  this.perfil.negocio = negocio
+}
+
 }

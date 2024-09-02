@@ -19,6 +19,21 @@
               </div>
             </div>
       </div>
+
+      <div class="col">
+        <label>Tipo Negócio</label>
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{opcao.negocio}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li *ngFor="let negocio of tiposNegocios">
+                  <a class="dropdown-item" (click)="setTipoNegocio(negocio.tipo)">{{negocio.tipo}}</a>
+                </li>           
+              </div>
+            </div>
+      </div>
+
     </div>
     <br>
     <div class="form-row">

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserDataService } from '../account/create-account/user-data.service';
 import { GeralService } from '../services/geral.service';
 import { TipoImovel } from '../models/tipoImovel';
+import { TipoNegocio } from '../models/tipoNegocio';
 
 @Component({
   selector: 'app-opcao-form',
@@ -21,6 +22,7 @@ export class OpcaoFormComponent implements OnInit{
   idCorretor:'',
   nomeOpcao: '',
   tipo: 'APARTAMENTO',
+  negocio: 'VENDA',  
   valor: 0,
   area: 0,
   quarto:'',
@@ -44,7 +46,8 @@ export class OpcaoFormComponent implements OnInit{
  }
 
  tiposImoveis: TipoImovel[] = []; 
-  
+ tiposNegocios: TipoNegocio[] = []; 
+ 
  isEditing: boolean = false;
 
  constructor(
@@ -68,6 +71,14 @@ export class OpcaoFormComponent implements OnInit{
     },
     error: (err) => console.error("Erro ao carregar tipos", err)
   })
+
+     //tras tipo de negocios
+     this.geralService.getTiposNegocios().subscribe({
+      next: (response) => {this.tiposNegocios = response,
+        console.log(this.tiposNegocios)
+      },
+      error: (err) => console.error("Erro ao carregar tipos", err)
+    })
     
     this.route.paramMap.subscribe({
     next: (response) => {
@@ -134,5 +145,9 @@ export class OpcaoFormComponent implements OnInit{
 
       setTipoImoveis(tipo : string){
         this.opcao.tipo = tipo
+      }
+
+      setTipoNegocio(negocio : string){
+        this.opcao.negocio = negocio
       }
 }

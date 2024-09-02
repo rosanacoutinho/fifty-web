@@ -4,6 +4,7 @@ export interface Opcao {
         id: string,
         idCorretor: string,
         tipo: string,
+        negocio: string,    
         valor: number,
         area: number,
         endereco: Endereco,
