@@ -8,6 +8,8 @@ import { UserDataService } from '../account/create-account/user-data.service';
 import { TipoImovel } from '../models/tipoImovel';
 import { GeralService } from '../services/geral.service';
 import { TipoNegocio } from '../models/tipoNegocio';
+import { Estado } from '../models/estado';
+import { Cidade } from '../models/cidade';
 
 @Component({
   selector: 'app-perfil-form',
@@ -20,7 +22,7 @@ export class PerfilFormComponent implements OnInit{
 
  perfil: Perfil = {
   id:'' ,
-  idCorretor: '',
+  corretor:{id:'', nome:'', email:'',telefone:0},
   nomePerfil: '',
   tipo: 'APARTAMENTO',
   negocio: 'VENDA',    
@@ -40,7 +42,9 @@ export class PerfilFormComponent implements OnInit{
  tiposImoveis: TipoImovel[] = []; 
  tiposNegocios: TipoNegocio[] = []; 
  isEditing: boolean = false;
-
+ estados: Estado[] = []; 
+ cidades: Cidade[] =[];
+ 
  constructor(
   private formbuilder: FormBuilder,
   private perfilService: PerfilService,
@@ -54,25 +58,21 @@ export class PerfilFormComponent implements OnInit{
     //obter o id do corretor via servico
     this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
 
-  //tras tipo de imoveis 
+    //carrega tipo de imoveis 
    this.geralService.getTiposImoveis().subscribe({
-    next: (response) => {this.tiposImoveis = response,
-      console.log(this.tiposImoveis)
-    },
+    next: (response) => this.tiposImoveis = response,
     error: (err) => console.error("Erro ao carregar tipos", err)
-  })
+    })
 
-       //tras tipo de negocios
+       //carrega tipo de negocios
        this.geralService.getTiposNegocios().subscribe({
-        next: (response) => {this.tiposNegocios = response,
-          console.log(this.tiposNegocios)
-        },
+        next: (response) => this.tiposNegocios = response,
         error: (err) => console.error("Erro ao carregar tipos", err)
       })
 
-    //carregar estados para tela  (em construcao)
+    //carregar estados Brasil 
     this.perfilService.getEstadosBrasileiros().subscribe({
-      next: (response) => {console.log(response) },
+      next: (response) => this.estados=response,
       error: (err) => console.error("Erro ao carregar estados", err)
     })
 
@@ -117,7 +117,6 @@ export class PerfilFormComponent implements OnInit{
 
 
  onSubmit(){
-
   if(this.isEditing){
     this.perfilService.updatePerfil(this.perfil)
     .subscribe({
@@ -129,7 +128,7 @@ export class PerfilFormComponent implements OnInit{
       }
     });}
     else{   
-      this.perfil.idCorretor = this.id_corretor
+      this.perfil.corretor.id = this.id_corretor
       this.perfilService.addPerfil(this.perfil).subscribe({
       next: () => { this.router.navigate(['/listaperfil'])},
       error: (err) =>{
@@ -148,6 +147,20 @@ setTipoImoveis(tipo : string){
 
 setTipoNegocio(negocio : string){
   this.perfil.negocio = negocio
+}
+
+setEstado(i: number, estado : string){
+  this.perfil.enderecos[i].estado = estado
+  this.perfilService.getCidadesPorEstado(estado).subscribe({
+    next: (response) => {
+      this.cidades = response
+      this.perfil.enderecos[i].cidade =''},
+    error: (err) => console.error("Erro ao carregar cidades", err)
+  })
+}
+
+setCidade(i: number, cidade : string){
+  this.perfil.enderecos[i].cidade = cidade
 }
 
 }

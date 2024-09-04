@@ -1,8 +1,9 @@
+import { Corretor } from "./corretor"
 import { Endereco } from "./endereco"
 
 export interface Opcao {
         id: string,
-        idCorretor: string,
+        corretor: Corretor,
         tipo: string,
         negocio: string,    
         valor: number,

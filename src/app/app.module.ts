@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfilFormComponent } from './perfil-form/perfil-form.component';
 import { PerfilListComponent } from './perfil-list/perfil-list.component';
+import { OpcaoMatchingComponent } from './opcao-matching/opcao-matching.component';
+import { PerfilMatchingComponent } from './perfil-matching/perfil-matching.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PerfilListComponent } from './perfil-list/perfil-list.component';
     CreateAccountComponent,
     AuthenticationComponent,
     PerfilFormComponent,
-    PerfilListComponent
+    PerfilListComponent,
+    OpcaoMatchingComponent,
+    PerfilMatchingComponent
   ],
   imports: [
     BrowserModule,

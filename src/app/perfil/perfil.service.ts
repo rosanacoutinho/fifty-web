@@ -37,7 +37,10 @@ export class PerfilService {
     return this.http.put<Perfil>(url, perfil);
   }
 
-
+  getPerfisMatch(id_perfil: string): Observable<any> {
+    const url = `${environment.api}/matching/perfis/${id_perfil}`;
+    return this.http.post<any>(url,null);
+  }
 
   getEstadosBrasileiros(): Observable<any>{
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados`;

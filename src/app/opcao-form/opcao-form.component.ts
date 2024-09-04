@@ -19,7 +19,7 @@ export class OpcaoFormComponent implements OnInit{
 
  opcao: Opcao = {
   id:'' ,
-  idCorretor:'',
+  corretor: {id:'',nome:'',email:'',telefone:0},
   nomeOpcao: '',
   tipo: 'APARTAMENTO',
   negocio: 'VENDA',  
@@ -64,7 +64,7 @@ export class OpcaoFormComponent implements OnInit{
   //obter o id do corretor via servico
    this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
 
-   //tras tipo de imoveis 
+   //traz tipo de imoveis 
    this.geralService.getTiposImoveis().subscribe({
     next: (response) => {this.tiposImoveis = response,
       console.log(this.tiposImoveis)
@@ -72,7 +72,7 @@ export class OpcaoFormComponent implements OnInit{
     error: (err) => console.error("Erro ao carregar tipos", err)
   })
 
-     //tras tipo de negocios
+     //traz tipo de negocios
      this.geralService.getTiposNegocios().subscribe({
       next: (response) => {this.tiposNegocios = response,
         console.log(this.tiposNegocios)
@@ -107,7 +107,7 @@ export class OpcaoFormComponent implements OnInit{
       }
     });}
     else{
-      this.opcao.idCorretor= this.id_corretor
+      this.opcao.corretor.id= this.id_corretor
       console.log(this.opcao)
     this.opcaoService.addOpcao(this.opcao).subscribe({
       next: () => { this.router.navigate(['/listaopcao'])},
@@ -120,10 +120,10 @@ export class OpcaoFormComponent implements OnInit{
       buscarCEP(){   
         this.opcaoService.getCEP(this.opcao.endereco.cep).subscribe({
           next: (response) => {
-            this.opcao.endereco.estado=response.state,
-            this.opcao.endereco.cidade=response.city,
-            this.opcao.endereco.bairro=response.neighborhood,
-            this.opcao.endereco.rua=response.street},
+            this.opcao.endereco.estado=response.estado,
+            this.opcao.endereco.cidade=response.uf,
+            this.opcao.endereco.bairro=response.bairro,
+            this.opcao.endereco.rua=response.logradouro},
           error: (err) => { console.error("CEP nao encontrado", err),
               alert("CEP nao encontrado")
           }

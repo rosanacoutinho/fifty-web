@@ -1,9 +1,10 @@
+import { Corretor } from "./corretor"
 import { Endereco } from "./endereco"
 
 export interface Perfil {
         nomePerfil: string,
         id: string,
-        idCorretor: string,
+        corretor: Corretor,
         tipo: string,  
         negocio: string,    
         enderecos: Array<Endereco>, 

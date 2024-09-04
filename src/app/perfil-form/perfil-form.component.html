@@ -4,12 +4,14 @@
       <div class="form-row">
         <div class="col">
           <label>Nome</label>
-          <input type="text" class="form-control" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" placeholder="Digite aqui um nome para identificar seu Perfil">
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="nomePerfil" [(ngModel)]="perfil.nomePerfil" placeholder="Digite aqui um nome para identificar seu Perfil">
+          </div>
         </div>
         <div class="col">
           <label>Tipo Imóvel</label>
-              <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="dropdown" >
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{perfil.tipo}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -23,7 +25,7 @@
         <div class="col">
           <label>Tipo Negócio</label>
               <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{perfil.negocio}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -38,51 +40,71 @@
       <div class="form-row">
         <div class="col">
           <label>Preço Mínimo (R$)</label>
-          <input type="text" class="form-control" name="valorMinimo" [(ngModel)]="perfil.valorMinimo" >
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="valorMinimo" [(ngModel)]="perfil.valorMinimo" >
+          </div>
         </div>
         <div class="col">
             <label>Preço Máximo (R$)</label>
+            <div class="input-group input-group-sm mb-3">
             <input type="text" class="form-control" name="valorMaximo" [(ngModel)]="perfil.valorMaximo" >
+          </div>
           </div>
       </div>
       <div class="form-row">
           <div class="col">
             <label>Área Mínima (m2)</label>
-            <input type="text" class="form-control" name="areaMinima" [(ngModel)]="perfil.areaMinima" >
+            <div class="input-group input-group-sm mb-3">
+             <input type="text" class="form-control" name="areaMinima" [(ngModel)]="perfil.areaMinima" >
+              </div>
           </div>
           <div class="col">
             <label>Área Máxima (m2)</label>
+            <div class="input-group input-group-sm mb-3">
             <input type="text" class="form-control" name="areaMaxima" [(ngModel)]="perfil.areaMaxima" >
+          </div>
           </div>
        </div>
 
        <div class="form-row">
         <div class="col">
           <label>Iptu Anual Máximo (R$)</label>
+          <div class="input-group input-group-sm mb-3">
           <input type="text" class="form-control" name="valorMaximoIptu" [(ngModel)]="perfil.valorMaximoIptu" >
+        </div>
         </div>
         <div class="col">
           <label>Condomínio Mensal Máximo (R$)</label>
-          <input type="text" class="form-control" name="valorMaximoCondominio" [(ngModel)]="perfil.valorMaximoCondominio" >
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="valorMaximoCondominio" [(ngModel)]="perfil.valorMaximoCondominio" >
+          </div>
         </div>
       </div>
       <br>
         <div class="form-row">
           <div class="col">
             <label>Quartos (apartir de)</label>
-            <input type="number" class="form-control" name="quarto" [(ngModel)]="perfil.quantidadeQuartoMinimo">
+            <div class="input-group input-group-sm mb-3"> 
+                <input type="number" class="form-control" name="quarto" [(ngModel)]="perfil.quantidadeQuartoMinimo">
+            </div>
           </div>
           <div class="col">
             <label>Suites (apartir de)</label>
+            <div class="input-group input-group-sm mb-3">
             <input type="number" class="form-control" name="quantidadeSuiteMinima" [(ngModel)]="perfil.quantidadeSuiteMinima">
+            </div>
           </div>
             <div class="col">
               <label>Banheiros (apartir de)</label>
-              <input type="number" class="form-control" name="banheiro" [(ngModel)]="perfil.quantidadeBanheiroMinimo" >
+              <div class="input-group input-group-sm mb-3">
+                <input type="number" class="form-control" name="banheiro" [(ngModel)]="perfil.quantidadeBanheiroMinimo" >
+              </div>   
             </div>
             <div class="col">
               <label>Garagem (apartir de)</label>
-              <input type="number" class="form-control" name="vagaGaragem" [(ngModel)]="perfil.quantidadeVagaMinima" >
+              <div class="input-group input-group-sm mb-3">
+                <input type="number" class="form-control" name="vagaGaragem" [(ngModel)]="perfil.quantidadeVagaMinima" >
+              </div>
             </div>
            
             <div class="col">
@@ -103,24 +125,52 @@
       <div class="form-row">     
        <div class="col">
          <label>País</label>
+         <div class="input-group input-group-sm mb-3">
          <input type="text" class="form-control" name="pais"
           [(ngModel)]="perfil.enderecos[i].pais" name="endereco{{i}}.pais" 
           placeholder="País" [disabled]="true">
+        </div>
        </div>
-       <div class="col">
+       <div class="col" >
+         <!-- <input type="text" class="form-control" name="estado" [(ngModel)]="perfil.enderecos[i].estado"  name="endereco{{i}}.estado" placeholder="Estado">
+         -->
          <label>Estado</label>
-         <input type="text" class="form-control" name="estado" [(ngModel)]="perfil.enderecos[i].estado"  name="endereco{{i}}.estado" placeholder="Estado">
-       </div>
+            <div class="dropdown" >
+              <button  class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{perfil.enderecos[i].estado}}
+              </button>
+              <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li *ngFor="let estado of estados">
+                  <a class="dropdown-item" (click)="setEstado(i, estado.sigla)">{{estado.sigla}} - {{estado.nome}}</a>
+                </li>           
+              </div>
+            </div>
+
+        </div>
        <div class="col">
          <label>Cidade</label>
-           <input type="text" class="form-control" name="cidade" [(ngModel)]="perfil.enderecos[i].cidade" name="endereco{{i}}.cidade" placeholder="Cidade">
-         </div>    
+           <!-- <input type="text" class="form-control" name="cidade" [(ngModel)]="perfil.enderecos[i].cidade" name="endereco{{i}}.cidade" placeholder="Cidade">
+       -->
+           <div class="dropdown">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{perfil.enderecos[i].cidade}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li *ngFor="let cidade of cidades">
+                <a class="dropdown-item" (click)="setCidade(i, cidade.nome)">{{cidade.nome}}</a>
+              </li>           
+            </div>
+          </div>
+
+          </div>    
       </div>
 
       <div class="form-row">
         <div class="col">
           <label>Bairro</label>
+          <div class="input-group input-group-sm mb-3">
           <input type="text" class="form-control"  [(ngModel)]="perfil.enderecos[i].bairro" name="endereco{{i}}.bairro" >
+        </div>
         </div>
     </div>
     

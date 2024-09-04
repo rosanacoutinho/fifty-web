@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -37,9 +36,13 @@ export class OpcaoService {
     return this.http.put<Opcao>(url, opcao);
   }
 
+  getOpcoesMatch(id_opcao: string): Observable<any> {
+    const url = `${environment.api}/matching/opcoes/${id_opcao}`;
+    return this.http.post<any>(url,null);
+  }
 
   getCEP(cep:string): Observable<any>{
-    const url = `https://brasilapi.com.br/api/cep/v1/${cep}`;
+   const url = `https://viacep.com.br/ws/${cep}/json/`;
     return this.http.get<any>(url);
   }
 

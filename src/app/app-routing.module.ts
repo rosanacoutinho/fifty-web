@@ -9,6 +9,8 @@ import { AuthGuard } from './account/shared/auth.guard';
 import { LoginComponent } from './account/login/login.component';
 import { PerfilListComponent } from './perfil-list/perfil-list.component';
 import { PerfilFormComponent } from './perfil-form/perfil-form.component';
+import { OpcaoMatchingComponent } from './opcao-matching/opcao-matching.component';
+import { PerfilMatchingComponent } from './perfil-matching/perfil-matching.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path:"listaperfil", component: PerfilListComponent, canActivate: [AuthGuard]},
   {path:"novoperfil", component: PerfilFormComponent, canActivate: [AuthGuard]},
   {path:"editarPerfil/:id", component: PerfilFormComponent, canActivate: [AuthGuard]},
-  {path:"create-account/:id", component: CreateAccountComponent, canActivate: [AuthGuard]}
+  {path:"create-account/:id", component: CreateAccountComponent, canActivate: [AuthGuard]},
+  {path:"opcaoMatching/:id_opcao", component: OpcaoMatchingComponent, canActivate: [AuthGuard]},
+  {path:"perfilMatching/:id_perfil", component: PerfilMatchingComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
