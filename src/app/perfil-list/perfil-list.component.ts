@@ -3,6 +3,7 @@ import { Perfil } from '../models/perfil';
 import { Router } from '@angular/router';
 import { PerfilService } from '../perfil/perfil.service';
 import { UserDataService } from '../account/create-account/user-data.service';
+import { PerfilMatch } from '../models/perfilMatch';
 
 @Component({
   selector: 'app-perfil-list',
@@ -12,7 +13,7 @@ import { UserDataService } from '../account/create-account/user-data.service';
 export class PerfilListComponent implements OnInit {
 
  perfis: Perfil[] = [];
-
+ matches: PerfilMatch[] = [];
 
 
  id_corretor=''
@@ -47,13 +48,29 @@ export class PerfilListComponent implements OnInit {
     this.perfilService.getPerfis(this.id_corretor).subscribe({
       next: (response) => {
         this.perfis = response;
-        console.log(response)
+      },
+      error: (err) => {
+        console.error('Erro ao obter dados:', err);
+      },
+      complete: () => {        
+        this.perfis.forEach(perfil => { 
+            this.buscaQuantidadeMatchings(perfil)
+        });
+      }
+  });
+}
+
+  buscaQuantidadeMatchings(perfil: Perfil): any{
+    this.perfilService.getPerfisMatch(perfil.id).subscribe({
+      next: (response) => {
+        this.matches = response;
+        perfil.numeroMatchings = response.length
       },
       error: (err) => {
         console.error('Erro ao obter dados:', err);
       },
       complete: () => {
-        console.log('Requisição completa');
+        console.log('Requisição completa')
       }
     });
   }

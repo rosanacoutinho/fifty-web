@@ -18,5 +18,6 @@ export interface Perfil {
         quantidadeBanheiroMinimo: number, 
         varanda: boolean,
         valorMaximoIptu: number,
-        valorMaximoCondominio: number
+        valorMaximoCondominio: number,
+        numeroMatchings: number
  }

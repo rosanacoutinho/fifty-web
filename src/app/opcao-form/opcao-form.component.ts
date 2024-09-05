@@ -42,7 +42,8 @@ export class OpcaoFormComponent implements OnInit{
   vagaGaragem: '',
   varanda: false,
   iptu: '',
-  condominio: ''
+  condominio: '',
+  numeroMatchings: 0
  }
 
  tiposImoveis: TipoImovel[] = []; 

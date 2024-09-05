@@ -3,6 +3,7 @@ import { OpcaoService } from '../opcao/opcao.service';
 import { Opcao } from '../models/opcao';
 import { Router } from '@angular/router';
 import { UserDataService } from '../account/create-account/user-data.service';
+import { OpcaoMatch } from '../models/opcaoMatch';
 
 @Component({
   selector: 'app-opcao-list',
@@ -12,6 +13,7 @@ import { UserDataService } from '../account/create-account/user-data.service';
 export class OpcaoListComponent implements OnInit {
 
  opcoes: Opcao[] = [];
+ matches: OpcaoMatch[] = [];
 
  id_corretor= ''
 
@@ -23,6 +25,7 @@ export class OpcaoListComponent implements OnInit {
  ngOnInit(): void {
   this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
   this.buscarOpcoes(this.id_corretor);
+    
 }
 
   deleteOpcao(id: string): void {
@@ -49,8 +52,27 @@ buscarOpcoes(id_corretor: string):void{
       error: (err) => {
         console.error('Erro ao obter dados:', err);
       },
+      complete: () => {        
+        this.opcoes.forEach( opcao => { 
+          console.log(opcao.nomeOpcao),
+            this.buscaQuantidadeMatchings(opcao)
+        });
+
+      }
+    });
+  }
+
+  buscaQuantidadeMatchings(opcao: Opcao): any{
+    this.opcaoService.getOpcoesMatch(opcao.id).subscribe({
+      next: (response) => {
+        this.matches = response;
+        opcao.numeroMatchings = response.length
+      },
+      error: (err) => {
+        console.error('Erro ao obter dados:', err);
+      },
       complete: () => {
-        console.log('Requisição completa');
+        console.log('Requisição completa')
       }
     });
   }

@@ -1,7 +1,11 @@
 <nav>
+  <div class="superior">
     <a routerLink="/home">Home</a>
     <a routerLink="/listaopcao">Minhas Opções</a>
     <a routerLink="/listaperfil">Meus Perfis</a>
+  </div>
+  <div class="inferior">
     <a [routerLink]="['/create-account', user.id]">Meu Cadastro</a>
     <a routerLink="/login" (click)="logOut()">Sair</a>
-  </nav>
+  </div>
+</nav>

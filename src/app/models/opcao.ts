@@ -16,5 +16,6 @@ export interface Opcao {
         vagaGaragem: string,
         varanda: boolean,
         iptu: string,
-        condominio: string
+        condominio: string,
+        numeroMatchings: number
  }

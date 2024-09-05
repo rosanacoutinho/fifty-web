@@ -37,7 +37,9 @@ export class PerfilFormComponent implements OnInit{
 	varanda: false,
   valorMaximoIptu: 0,
   valorMaximoCondominio: 0,
-  enderecos: []}
+  enderecos: [],
+  numeroMatchings: 0
+}
 
  tiposImoveis: TipoImovel[] = []; 
  tiposNegocios: TipoNegocio[] = []; 
