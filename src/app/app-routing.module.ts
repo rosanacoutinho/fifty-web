@@ -11,6 +11,8 @@ import { PerfilListComponent } from './perfil-list/perfil-list.component';
 import { PerfilFormComponent } from './perfil-form/perfil-form.component';
 import { OpcaoMatchingComponent } from './opcao-matching/opcao-matching.component';
 import { PerfilMatchingComponent } from './perfil-matching/perfil-matching.component';
+import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.component';
+import { ParceirosComponent } from './parceiros/parceiros.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path:"editarPerfil/:id", component: PerfilFormComponent, canActivate: [AuthGuard]},
   {path:"create-account/:id", component: CreateAccountComponent, canActivate: [AuthGuard]},
   {path:"opcaoMatching/:id_opcao", component: OpcaoMatchingComponent, canActivate: [AuthGuard]},
-  {path:"perfilMatching/:id_perfil", component: PerfilMatchingComponent, canActivate: [AuthGuard]}
+  {path:"perfilMatching/:id_perfil", component: PerfilMatchingComponent, canActivate: [AuthGuard]},
+  {path:"corretor/:id_corretor", component: CorretorPerfilComponent, canActivate: [AuthGuard]},
+  {path:"parceiros", component: ParceirosComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

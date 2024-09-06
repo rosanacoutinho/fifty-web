@@ -1,0 +1,19 @@
+<h3>Parceiros</h3>
+<br>
+<br>
+<table class="table table-striped" *ngIf="corretores.length">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let corretor of corretores">
+            <td><a href="#" [routerLink]="['/corretor', corretor.id]">{{corretor.nome}}</a></td>
+            <td>{{corretor.telefone}}</td>
+            <td>{{corretor.email}}</td>
+        </tr>
+    </tbody>
+</table>

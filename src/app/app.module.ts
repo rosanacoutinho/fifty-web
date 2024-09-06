@@ -16,6 +16,8 @@ import { OpcaoMatchingComponent } from './opcao-matching/opcao-matching.componen
 import { PerfilMatchingComponent } from './perfil-matching/perfil-matching.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ParceirosComponent } from './parceiros/parceiros.component';
+import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     OpcaoMatchingComponent,
     PerfilMatchingComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ParceirosComponent,
+    CorretorPerfilComponent
   ],
   imports: [
     BrowserModule,

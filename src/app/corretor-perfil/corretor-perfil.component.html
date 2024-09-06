@@ -1,0 +1,47 @@
+<button class="btn btn-outline-primary"  (click)="voltar()">Voltar</button>
+<br>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Corretor</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{corretor.nome}}</td>
+            <td>{{corretor.telefone}}</td>
+            <td>{{corretor.email}}</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<table class="table table-striped" *ngIf="opcoes.length">
+    <thead>
+        <tr>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let opcao of opcoes; let i = index">
+            <td>{{opcao.nomeOpcao}}</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<table class="table table-striped" *ngIf="perfis.length">
+    <thead>
+        <tr>
+            <th>Perfis</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let perfil of perfis">
+            <td>{{perfil.nomePerfil}}</td>
+        </tr>
+    </tbody>
+</table>
