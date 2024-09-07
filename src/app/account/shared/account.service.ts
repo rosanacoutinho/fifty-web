@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserDataService } from '../create-account/user-data.service';
-import * as JWT from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
+
 
 
 @Injectable({
@@ -67,13 +68,13 @@ export class AccountService {
   } 
 
   getTokenExpirationDate(token: string): Date {
-    const decodedToken = JWT(token);
-    if (decodedToken.exp === undefined) {
+    const decoded: any = jwtDecode(token);
+    if (decoded.exp === undefined) {
       //return null;
     }
 
     const date = new Date(0);
-    date.setUTCSeconds(decodedToken.exp);
+    date.setUTCSeconds(decoded.exp);
     return date;
   }
 
