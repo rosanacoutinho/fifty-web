@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Perfil } from '../models/perfil';
 import { PerfilService } from '../perfil/perfil.service';
@@ -48,7 +48,7 @@ export class PerfilFormComponent implements OnInit{
  cidades: Cidade[] =[];
  
  constructor(
-  private formbuilder: FormBuilder,
+  private formbuilder: UntypedFormBuilder,
   private perfilService: PerfilService,
   private router: Router,
   private route: ActivatedRoute,

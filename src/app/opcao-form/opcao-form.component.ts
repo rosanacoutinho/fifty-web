@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OpcaoService } from '../opcao/opcao.service';
 import { Opcao } from '../models/opcao';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -52,7 +52,7 @@ export class OpcaoFormComponent implements OnInit{
  isEditing: boolean = false;
 
  constructor(
-  private formbuilder: FormBuilder,
+  private formbuilder: UntypedFormBuilder,
   private opcaoService: OpcaoService,
   private router: Router,
   private route: ActivatedRoute,
