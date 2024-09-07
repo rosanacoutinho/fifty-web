@@ -24,7 +24,7 @@ export class UserDataService {
 
     localStorage.setItem('id', user.id);
     localStorage.setItem('nome', user.nome);
-    localStorage.setItem('creci', user.creci )
+    localStorage.setItem('creci', user.creci);
 
   }
 }

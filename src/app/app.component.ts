@@ -9,19 +9,6 @@ import { UserDataService } from './account/create-account/user-data.service';
 export class AppComponent {
   constructor( private userDataService: UserDataService) {}
 
-  title = 'fifty-web';
+  title = 'fifty-web';  
 
-  user= {
-    id:'',
-    creci: '',
-    nome : '', 
-    telefone: '',
-    email: '',
-    senha: ''
-  };
-  
-  isUserLoggedIn(): boolean {
-    this.userDataService.currentData.subscribe(user => this.user = user);
-    return this.user.id == '';
-  }
 }

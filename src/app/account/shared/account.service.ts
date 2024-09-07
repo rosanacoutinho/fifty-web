@@ -1,9 +1,10 @@
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-//import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
+import { UserDataService } from '../create-account/user-data.service';
+import * as JWT from 'jwt-decode';
 
 
 @Injectable({
@@ -11,18 +12,33 @@ import { User } from 'src/app/models/user';
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private userDataService: UserDataService
+  ) { }
  
   creciValido: boolean = false;
 
-  login(user: any) : Observable<any>   {
-      const url = `${environment.api}/senhas/validar`;
-      const body = { creci: user.creci,
-                      senha: user.senha
-        };
-      
-      const result = this.http.post<any>(url, body);
-      return result;
+  async login(user: any) {
+    try{
+      const body = { creci: user.creci, senha: user.senha};
+      console.log("usuario")
+      console.log(user)
+      console.log(body)
+      const result = await this.http.post<any>(`${environment.api}/auth/login`, body).toPromise();
+      console.log("antes do result")
+    if (result && result.token){
+      console.log("entrou no result")
+      this.getAccount(user.creci);
+      this.userDataService.changeData(user);
+      window.localStorage.setItem('token', result.token);
+      return true;
+    }
+    } catch (err){
+      console.log(err)
+    }
+    
+    
+    return false;
   }
 
 
@@ -31,13 +47,13 @@ export class AccountService {
     return result;
   }
 
-  createAccount(user: User) : Observable<any> {
+  async createAccount(user: User) {
     const url = `${environment.api}/corretores`;   
-    return this.http.post<any>(url, user);
+    return await this.http.post<any>(url, user).toPromise();
   }
 
-  getAccount(id:string): Observable<any>{
-    const url = `${environment.api}/corretores/${id}`;
+  getAccount(creci:string): Observable<any>{
+    const url = `${environment.api}/corretores/${creci}`;
     return this.http.get<any>(url);
   }
   updateAccount(user: User): Observable<User> {
@@ -51,14 +67,13 @@ export class AccountService {
   } 
 
   getTokenExpirationDate(token: string): Date {
-    const decoded: any = jwt_decode(token);
-
-    if (decoded.exp === undefined) {
+    const decodedToken = JWT(token);
+    if (decodedToken.exp === undefined) {
       //return null;
     }
 
     const date = new Date(0);
-    date.setUTCSeconds(decoded.exp);
+    date.setUTCSeconds(decodedToken.exp);
     return date;
   }
 
@@ -85,8 +100,5 @@ export class AccountService {
 
     return true;
   }
-}
-function jwt_decode(token: string): any {
-  throw new Error('Function not implemented.');
 }
 

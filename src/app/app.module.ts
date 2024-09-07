@@ -14,10 +14,9 @@ import { PerfilFormComponent } from './perfil-form/perfil-form.component';
 import { PerfilListComponent } from './perfil-list/perfil-list.component';
 import { OpcaoMatchingComponent } from './opcao-matching/opcao-matching.component';
 import { PerfilMatchingComponent } from './perfil-matching/perfil-matching.component';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParceirosComponent } from './parceiros/parceiros.component';
 import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.component';
+import { httpInterceptorProviders } from './http-interceptors';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,6 @@ import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.compo
     PerfilListComponent,
     OpcaoMatchingComponent,
     PerfilMatchingComponent,
-    HeaderComponent,
-    SidebarComponent,
     ParceirosComponent,
     CorretorPerfilComponent
   ],
@@ -43,7 +40,9 @@ import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.compo
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

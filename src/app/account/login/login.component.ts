@@ -10,8 +10,6 @@ import { UserDataService } from '../create-account/user-data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-
   user = {
     id:'',
     creci: '',
@@ -29,19 +27,17 @@ export class LoginComponent implements OnInit {
 
  
   ngOnInit(): void {
-   this.userDataService.currentData.subscribe(user => this.user = user);
+
   }
 
-  onSubmit(){
-    const result =  this.accountService.login(this.user).subscribe({
-      next: (response) => { this.user= response,
-        console.log(this.user),
-        this.userDataService.changeData(response);
-        this.router.navigate(['/home']);
-       }, 
-      error: (err) => {
-      console.error(err);
-      alert("Usuário não cadastrado" );}
-    }); 
+  async onSubmit(){
+    try {
+      const result = await this.accountService.login(this.user);
+      console.log("resultado" + result)
+      this.router.navigate(['home']);
+    } catch (error) {
+      alert("Usuário não cadastrado" );
+      //console.error(error);
+    }
   }
 }
