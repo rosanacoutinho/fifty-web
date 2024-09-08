@@ -20,11 +20,12 @@ export class UserDataService {
   currentData = this.dataSource.asObservable();
 
   changeData(user: User) {
+    console.log(user)
+    console.log(user.nome)
     this.dataSource.next(user);
-
     localStorage.setItem('id', user.id);
     localStorage.setItem('nome', user.nome);
     localStorage.setItem('creci', user.creci);
-
+    console.log(user)
   }
 }

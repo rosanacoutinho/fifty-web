@@ -17,6 +17,8 @@ import { PerfilMatchingComponent } from './perfil-matching/perfil-matching.compo
 import { ParceirosComponent } from './parceiros/parceiros.component';
 import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.component';
 import { httpInterceptorProviders } from './http-interceptors';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { httpInterceptorProviders } from './http-interceptors';
     LoginComponent,
     CreateAccountComponent,
     AuthenticationComponent,
-    PerfilFormComponent,
-    PerfilListComponent,
     OpcaoMatchingComponent,
     PerfilMatchingComponent,
     ParceirosComponent,
-    CorretorPerfilComponent
+    CorretorPerfilComponent,
+    PerfilFormComponent,
+    PerfilListComponent,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

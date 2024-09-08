@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserDataService } from './account/create-account/user-data.service';
+import { AccountService } from './account/shared/account.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,13 @@ import { UserDataService } from './account/create-account/user-data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor( private userDataService: UserDataService) {}
+  constructor( 
+    private accountService: AccountService) {}
 
   title = 'fifty-web';  
 
+  isUserLoggedIn(): boolean {
+    console.log(this.accountService.isUserLoggedIn())
+    return this.accountService.isUserLoggedIn();
+  }
 }

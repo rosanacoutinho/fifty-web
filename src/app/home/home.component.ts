@@ -11,7 +11,6 @@ import { AccountService } from '../account/shared/account.service';
 export class HomeComponent implements OnInit {
 
   constructor( private router : Router,
-    private accountService: AccountService,
     private userDataService: UserDataService) { }
  
   user= {
@@ -23,10 +22,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDataService.currentData.subscribe(user => this.user = user);
-  }
-
-  isUserLoggedIn(): boolean {
-    console.log(this.accountService.isUserLoggedIn())
-    return this.accountService.isUserLoggedIn();
   }
 }

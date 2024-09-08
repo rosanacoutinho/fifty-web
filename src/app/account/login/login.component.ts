@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
   async onSubmit(){
     try {
       const result = await this.accountService.login(this.user);
-      console.log("resultado" + result)
       this.router.navigate(['home']);
     } catch (error) {
       alert("Usuário não cadastrado" );

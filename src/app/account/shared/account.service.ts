@@ -22,16 +22,21 @@ export class AccountService {
   async login(user: any) {
     try{
       const body = { creci: user.creci, senha: user.senha};
-      console.log("usuario")
-      console.log(user)
-      console.log(body)
       const result = await this.http.post<any>(`${environment.api}/auth/login`, body).toPromise();
-      console.log("antes do result")
     if (result && result.token){
-      console.log("entrou no result")
-      this.getAccount(user.creci);
+      this.getAccount(user.creci).subscribe({
+        next: (response) => {
+          window.localStorage.setItem('nome', response.nome);
+          window.localStorage.setItem('id', response.id);
+          user.nome = response.nome,
+          user.id = response.id
+          console.log(user)
+        },
+        error: (err) => console.error("Erro ao carregar usuario", err)
+      })
       this.userDataService.changeData(user);
       window.localStorage.setItem('token', result.token);
+      
       return true;
     }
     } catch (err){
