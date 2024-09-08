@@ -21,7 +21,7 @@ export class PerfilFormComponent implements OnInit{
 
  perfil: Perfil = {
   id:'' ,
-  corretor:{id:'', nome:'', email:'',telefone:0},
+  corretor:{id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', foto: [0]},
   nomePerfil: '',
   tipo: 'APARTAMENTO',
   negocio: 'VENDA',    

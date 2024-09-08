@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:"create-account/:creci", component: CreateAccountComponent, canActivate: [AuthGuard]},
   {path:"opcaoMatching/:id_opcao", component: OpcaoMatchingComponent, canActivate: [AuthGuard]},
   {path:"perfilMatching/:id_perfil", component: PerfilMatchingComponent, canActivate: [AuthGuard]},
-  {path:"corretor/:id_corretor", component: CorretorPerfilComponent, canActivate: [AuthGuard]},
+  {path:"corretor/:creci", component: CorretorPerfilComponent, canActivate: [AuthGuard]},
   {path:"parceiros", component: ParceirosComponent, canActivate: [AuthGuard]}
 ];
 

@@ -6,6 +6,7 @@ import { OpcaoService } from '../opcao/opcao.service';
 import { PerfilService } from '../perfil/perfil.service';
 import { Opcao } from '../models/opcao';
 import { Perfil } from '../models/perfil';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-corretor',
@@ -18,31 +19,37 @@ export class CorretorPerfilComponent implements OnInit {
     private route: ActivatedRoute,
     private corretorService: CorretorService,
     private opcaoService: OpcaoService,
-    private perfilService: PerfilService) { }
+    private perfilService: PerfilService,
+    private sanitizer: DomSanitizer) { }
 
-  corretor: Corretor = { id:"", nome:"", email:"", telefone:0 }
+  corretor: Corretor = { id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', foto: [0]}
   opcoes: Opcao[] = []
   perfis: Perfil[] = []
+  imagemUrl: any;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
       next: (response) => {
-      const id_corretor = response.get('id_corretor')
-      if(id_corretor){
-        this.corretorService.getCorretor(id_corretor).subscribe({
+      const creci = response.get('creci')
+      if(creci){
+        this.corretorService.getCorretor(creci).subscribe({
           next: (response) => {this.corretor = response, console.log(response) },
           error: (err) => console.error("Erro ao carregar corretor", err)
         }),
-        this.opcaoService.getOpcoes(id_corretor).subscribe({
+        this.opcaoService.getOpcoes(this.corretor.id).subscribe({
           next: (response) => {this.opcoes = response, console.log(response)},
           error: (err) => console.error("Erro ao carregar opcoes", err)
         }),
-        this.perfilService.getPerfis(id_corretor).subscribe({
+        this.perfilService.getPerfis(this.corretor.id).subscribe({
           next: (response) => {this.perfis = response, console.log(response)},
           error: (err) => console.error("Erro ao carregar perfis", err)
         })
       } 
     }});
+
+    this.corretorService.getFoto(this.corretor.creci).subscribe((data) => {
+      this.imagemUrl = this.sanitizer.bypassSecurityTrustUrl(`data:image/jpeg;base64,${data.imagem}`);
+    });
   }
 
   voltar(){

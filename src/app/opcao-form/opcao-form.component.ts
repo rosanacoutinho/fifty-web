@@ -19,7 +19,7 @@ export class OpcaoFormComponent implements OnInit{
 
  opcao: Opcao = {
   id:'' ,
-  corretor: {id:'',nome:'',email:'',telefone:0},
+  corretor: {id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', foto: [0]},
   nomeOpcao: '',
   tipo: 'APARTAMENTO',
   negocio: 'VENDA',  
