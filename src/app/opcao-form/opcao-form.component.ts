@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { OpcaoService } from '../opcao/opcao.service';
 import { Opcao } from '../models/opcao';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,7 +19,7 @@ export class OpcaoFormComponent implements OnInit{
 
  opcao: Opcao = {
   id:'' ,
-  corretor: {id:'',nome:'',email:'',telefone:0},
+  corretor: {id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', foto: [0]},
   nomeOpcao: '',
   tipo: 'APARTAMENTO',
   negocio: 'VENDA',  
@@ -52,7 +52,6 @@ export class OpcaoFormComponent implements OnInit{
  isEditing: boolean = false;
 
  constructor(
-  private formbuilder: FormBuilder,
   private opcaoService: OpcaoService,
   private router: Router,
   private route: ActivatedRoute,

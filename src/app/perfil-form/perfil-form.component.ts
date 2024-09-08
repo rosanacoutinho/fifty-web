@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Perfil } from '../models/perfil';
 import { PerfilService } from '../perfil/perfil.service';
@@ -22,7 +21,7 @@ export class PerfilFormComponent implements OnInit{
 
  perfil: Perfil = {
   id:'' ,
-  corretor:{id:'', nome:'', email:'',telefone:0},
+  corretor:{id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', foto: [0]},
   nomePerfil: '',
   tipo: 'APARTAMENTO',
   negocio: 'VENDA',    
@@ -48,7 +47,6 @@ export class PerfilFormComponent implements OnInit{
  cidades: Cidade[] =[];
  
  constructor(
-  private formbuilder: FormBuilder,
   private perfilService: PerfilService,
   private router: Router,
   private route: ActivatedRoute,

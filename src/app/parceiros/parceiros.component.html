@@ -11,7 +11,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let corretor of corretores">
-            <td><a href="#" [routerLink]="['/corretor', corretor.id]">{{corretor.nome}}</a></td>
+            <td><a href="#" [routerLink]="['/corretor', corretor.creci]">{{corretor.nome}}</a></td>
             <td>{{corretor.telefone}}</td>
             <td>{{corretor.email}}</td>
         </tr>

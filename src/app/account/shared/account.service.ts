@@ -1,9 +1,11 @@
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-//import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
+import { UserDataService } from '../create-account/user-data.service';
+import { jwtDecode } from "jwt-decode";
+
 
 
 @Injectable({
@@ -11,18 +13,38 @@ import { User } from 'src/app/models/user';
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private userDataService: UserDataService
+  ) { }
  
   creciValido: boolean = false;
 
-  login(user: any) : Observable<any>   {
-      const url = `${environment.api}/senhas/validar`;
-      const body = { creci: user.creci,
-                      senha: user.senha
-        };
+  async login(user: any) {
+    try{
+      const body = { creci: user.creci, senha: user.senha};
+      const result = await this.http.post<any>(`${environment.api}/auth/login`, body).toPromise();
+    if (result && result.token){
+      this.getAccount(user.creci).subscribe({
+        next: (response) => {
+          window.localStorage.setItem('nome', response.nome);
+          window.localStorage.setItem('id', response.id);
+          user.nome = response.nome,
+          user.id = response.id
+          console.log(user)
+        },
+        error: (err) => console.error("Erro ao carregar usuario", err)
+      })
+      this.userDataService.changeData(user);
+      window.localStorage.setItem('token', result.token);
       
-      const result = this.http.post<any>(url, body);
-      return result;
+      return true;
+    }
+    } catch (err){
+      console.log(err)
+    }
+    
+    
+    return false;
   }
 
 
@@ -31,13 +53,13 @@ export class AccountService {
     return result;
   }
 
-  createAccount(user: User) : Observable<any> {
+  async createAccount(user: User) {
     const url = `${environment.api}/corretores`;   
-    return this.http.post<any>(url, user);
+    return await this.http.post<any>(url, user).toPromise();
   }
 
-  getAccount(id:string): Observable<any>{
-    const url = `${environment.api}/corretores/${id}`;
+  getAccount(creci:string): Observable<any>{
+    const url = `${environment.api}/corretores/${creci}`;
     return this.http.get<any>(url);
   }
   updateAccount(user: User): Observable<User> {
@@ -51,8 +73,7 @@ export class AccountService {
   } 
 
   getTokenExpirationDate(token: string): Date {
-    const decoded: any = jwt_decode(token);
-
+    const decoded: any = jwtDecode(token);
     if (decoded.exp === undefined) {
       //return null;
     }
@@ -85,8 +106,5 @@ export class AccountService {
 
     return true;
   }
-}
-function jwt_decode(token: string): any {
-  throw new Error('Function not implemented.');
 }
 

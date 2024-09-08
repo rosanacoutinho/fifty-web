@@ -29,14 +29,14 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe({
       next: (response) => {
-      const id = response.get('id')
-      console.log(id)
-      if(id){
-        console.log(this.isEditing)
+      const creci = response.get('creci')
+      if(creci){
         this.creciValido = true,
         this.isEditing = true,
-        this.accountService.getAccount(id).subscribe({
-          next: (response) => {this.account = response },
+        this.accountService.getAccount(creci).subscribe({
+          next: (response) => {this.account = response ,
+            console.log(this.account)
+          },
           error: (err) => console.error("Erro ao carregar usuário", err)
         })
       } else{
@@ -62,7 +62,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
 
-   onSubmit() {
+   async onSubmit() {
     if(this.isEditing){
       this.accountService.updateAccount(this.account) //no back, update Corretor nao manda a senha. Ta certo assim?
       .subscribe({
@@ -73,16 +73,13 @@ export class CreateAccountComponent implements OnInit {
           console.error(err);
         }
       });}
-    else{
-      this.accountService.createAccount(this.account).subscribe(response => {
-        alert("Usuário cadastrado com sucesso!" ),
-        this.router.navigate(['/login']);     
-        }, error => {
-          console.log(this.account)
-          console.error(error);
-          alert("Este usuario ja esta cadastrado" )
-        });   
+    else {
+      try {
+        const result = await this.accountService.createAccount(this.account);
+        alert("Usuário cadastrado com sucesso!"); 
+      } catch (error){
+        console.error(error);
+      } 
       }
     }
-      
 }

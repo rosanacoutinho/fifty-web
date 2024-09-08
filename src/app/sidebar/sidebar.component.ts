@@ -24,13 +24,16 @@ export class SidebarComponent implements OnInit {
 
 
   logOut(): void{
+    window.localStorage.clear();
     this.userDataService.changeData({id:'', creci: '', nome : '', telefone: '', email: '',  senha: ''});
     this.router.navigate(['/login'])
   }
 
 
   ngOnInit(): void {
-    this.userDataService.currentData.subscribe(user => this.user = user);
+    const creci = window.localStorage.getItem('creci');
+    if(creci)
+      this.user.creci = creci;
   }
 
 }

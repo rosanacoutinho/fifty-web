@@ -14,10 +14,11 @@ import { PerfilFormComponent } from './perfil-form/perfil-form.component';
 import { PerfilListComponent } from './perfil-list/perfil-list.component';
 import { OpcaoMatchingComponent } from './opcao-matching/opcao-matching.component';
 import { PerfilMatchingComponent } from './perfil-matching/perfil-matching.component';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParceirosComponent } from './parceiros/parceiros.component';
 import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.component';
+import { httpInterceptorProviders } from './http-interceptors';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +26,14 @@ import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.compo
     LoginComponent,
     CreateAccountComponent,
     AuthenticationComponent,
-    PerfilFormComponent,
-    PerfilListComponent,
     OpcaoMatchingComponent,
     PerfilMatchingComponent,
-    HeaderComponent,
-    SidebarComponent,
     ParceirosComponent,
-    CorretorPerfilComponent
+    CorretorPerfilComponent,
+    PerfilFormComponent,
+    PerfilListComponent,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,9 @@ import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.compo
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

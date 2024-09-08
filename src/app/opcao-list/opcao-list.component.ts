@@ -24,6 +24,8 @@ export class OpcaoListComponent implements OnInit {
 
  ngOnInit(): void {
   this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
+  console.log("lista")
+  console.log(this.id_corretor)
   this.buscarOpcoes(this.id_corretor);
     
 }

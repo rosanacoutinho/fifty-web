@@ -21,4 +21,10 @@ export class CorretorService {
     const url = `${environment.api}/corretores/${id_corretor}`;
     return this.http.get<any>(url);
   }
+
+  getFoto(creci: string): Observable<any>{
+    const url =`${environment.api}/foto/${creci}`;
+    return this.http.get<{ imagem: string }>(url);
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../models/user';
 import { UserDataService } from '../account/create-account/user-data.service';
 import { Router } from '@angular/router';
+import { AccountService } from '../account/shared/account.service';
 
 @Component({
   selector: 'app-home',
@@ -22,11 +22,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDataService.currentData.subscribe(user => this.user = user);
-
-    console.log(this.user)
-    if(this.user.id == ''){
-      this.router.navigate(['/login'])
-    }
   }
-
 }
