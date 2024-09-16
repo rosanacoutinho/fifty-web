@@ -55,10 +55,11 @@ export class PerfilFormComponent implements OnInit{
 
  
  ngOnInit(): void {
-    //obter o id do corretor via servico
-    this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
+  const id = window.localStorage.getItem("id");
+  if(id)
+    this.id_corretor = id;
 
-    //carrega tipo de imoveis 
+   //carrega tipo de imoveis 
    this.geralService.getTiposImoveis().subscribe({
     next: (response) => this.tiposImoveis = response,
     error: (err) => console.error("Erro ao carregar tipos", err)

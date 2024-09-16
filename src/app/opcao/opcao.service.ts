@@ -23,6 +23,8 @@ export class OpcaoService {
 
   addOpcao(opcao: Opcao) : Observable<any>{
     const url = `${environment.api}/opcoes`;
+    console.log("opcao dentro do add")
+    console.log(opcao)
   return this.http.post(url, opcao);
   }
 

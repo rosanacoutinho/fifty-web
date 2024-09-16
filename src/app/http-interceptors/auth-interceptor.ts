@@ -12,11 +12,20 @@ export class AuthInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+    // Lista de URLs que não devem ser interceptadas
+    const excludedUrls = ['/auth/creci'];
+
+     // Verifica se a URL da requisição está na lista de exclusão
+     if (excludedUrls.some(url => req.url.includes(url))) {
+      return next.handle(req); // Passa a requisição sem modificar
+    }
 
     const token = this.accountService.getAuthorizationToken();
+    console.log("intercept"+ token)
     let request: HttpRequest<any> = req;
 
     if (token && !this.accountService.isTokenExpired(token)) {
+      console.log("entrou no if Token")
       // O request é imutavel, ou seja, não é possível mudar nada
       // Faço o clone para conseguir mudar as propriedades
       // Passo o token de autenticação no header

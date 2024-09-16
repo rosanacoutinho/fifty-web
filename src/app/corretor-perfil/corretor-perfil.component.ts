@@ -32,10 +32,12 @@ export class CorretorPerfilComponent implements OnInit {
       next: (response) => {
       const creci = response.get('creci')
       if(creci){
+        console.log("if creci")
         this.corretorService.getCorretor(creci).subscribe({
           next: (response) => {this.corretor = response, console.log(response) },
           error: (err) => console.error("Erro ao carregar corretor", err)
         }),
+        console.log(this.corretor.id),
         this.opcaoService.getOpcoes(this.corretor.id).subscribe({
           next: (response) => {this.opcoes = response, console.log(response)},
           error: (err) => console.error("Erro ao carregar opcoes", err)

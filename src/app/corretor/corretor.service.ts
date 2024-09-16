@@ -17,8 +17,8 @@ export class CorretorService {
     return this.http.get<any>(url);
   }
 
-  getCorretor(id_corretor:string): Observable<any>{
-    const url = `${environment.api}/corretores/${id_corretor}`;
+  getCorretor(creci:string): Observable<any>{
+    const url = `${environment.api}/corretores/${creci}`;
     return this.http.get<any>(url);
   }
 

@@ -9,12 +9,15 @@ import { AccountService } from './account/shared/account.service';
 })
 export class AppComponent {
   constructor( 
-    private accountService: AccountService) {}
+    private accountService: AccountService,
+    
+  ) {}
 
+  isLoading = false;
   title = 'fifty-web';  
 
   isUserLoggedIn(): boolean {
-    console.log(this.accountService.isUserLoggedIn())
+    console.log('Usuario logado: '+this.accountService.isUserLoggedIn())
     return this.accountService.isUserLoggedIn();
   }
 }

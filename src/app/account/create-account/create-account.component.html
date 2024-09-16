@@ -1,16 +1,47 @@
 <h2 class="text-center">{{isEditing? 'Editar' : 'Fazer'}} Cadastro</h2>
 
 <div class="form-group">
-  <label>Creci</label>
-  <input class="form-control" type="text" name="creci" id="creci" [(ngModel)]="account.creci" required [disabled]=creciValido/>
-   <div *ngIf="!creciValido">
-    <button (click)="verificaCreci()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-    </svg>
-  </button>
+    
+  <div class="form-row">
+        <div class="col">
+              <label>Creci</label>
+              <div class="input-group input-group-sm mb-3">
+                  <input class="form-control" type="text" name="creci" id="creci" [(ngModel)]="account.creci" required [disabled]=creciValido/>    
+              </div>
+        </div>
+
+        <div class="col">
+                <label>Estado</label>
+                <div class="dropdown" >
+                  <button  class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{account.siglaEstado}}
+                  </button>
+                  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li *ngFor="let estado of estados">
+                      <a class="dropdown-item" (click)="setEstado( estado.sigla)">{{estado.sigla}} - {{estado.nome}}</a>
+                    </li>           
+                  </div>
+                </div>
+        </div>
+        <div class="col">
+              <div *ngIf="!creciValido">
+                <br>
+                <div class="input-group input-group-sm mb-3" >
+                   <button type="button" class="btn btn-light btn-sm" (click)="verificaCreci()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                      </svg>
+                    </button>
+                </div>            
+              </div>
+        </div>
   </div>
+
+
 </div>
+
+
+
 <form (ngSubmit)="onSubmit()" ngNativeValidate #form="ngForm">
   <div *ngIf="creciValido">
   <div class="form-group">

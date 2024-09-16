@@ -23,11 +23,14 @@ export class AccountService {
     try{
       const body = { creci: user.creci, senha: user.senha};
       const result = await this.http.post<any>(`${environment.api}/auth/login`, body).toPromise();
+
+      console.log(body)
+
     if (result && result.token){
       this.getAccount(user.creci).subscribe({
         next: (response) => {
-          window.localStorage.setItem('nome', response.nome);
-          window.localStorage.setItem('id', response.id);
+          window.localStorage.setItem('nome', response.nome),
+          window.localStorage.setItem('id', response.id),
           user.nome = response.nome,
           user.id = response.id
           console.log(user)
@@ -47,9 +50,13 @@ export class AccountService {
     return false;
   }
 
-
-  verificaCreci(creci : string) : Observable<any> {
-    const result = this.http.post<any>(`${environment.api}/corretores/creci/${creci}`,null);
+//ESTE METODO NAO PRECISA ESTAR LOGADO
+  verificaCreci(creci : string, siglaEstado: string) : Observable<any> {
+    const body = { creci: creci, siglaEstado: siglaEstado};
+    const url = `${environment.api}/auth/creci`;
+    console.log(url)
+    console.log(body)
+    const result = this.http.post<any>(url, body);
     return result;
   }
 
@@ -60,6 +67,7 @@ export class AccountService {
 
   getAccount(creci:string): Observable<any>{
     const url = `${environment.api}/corretores/${creci}`;
+    console.log(url)
     return this.http.get<any>(url);
   }
   updateAccount(user: User): Observable<User> {

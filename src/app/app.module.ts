@@ -19,6 +19,7 @@ import { CorretorPerfilComponent } from './corretor-perfil/corretor-perfil.compo
 import { httpInterceptorProviders } from './http-interceptors';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HeaderComponent } from './header/header.component';
     PerfilFormComponent,
     PerfilListComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

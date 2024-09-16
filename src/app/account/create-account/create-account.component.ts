@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilService } from 'src/app/perfil/perfil.service';
+import { Estado } from 'src/app/models/estado';
+
 
 @Component({
   selector: 'app-create-account',
@@ -14,19 +17,29 @@ export class CreateAccountComponent implements OnInit {
     nome: '',
     telefone: '',
     email: '',
-    senha: ''
+    senha: '',
+    siglaEstado:''
   };
 
   creciValido: boolean = false;
   isEditing: boolean = false;
+  estados: Estado[] = []; 
 
   constructor(
+    private perfilService: PerfilService,
     private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+
+    //carregar estados Brasil 
+    this.perfilService.getEstadosBrasileiros().subscribe({
+      next: (response) => this.estados=response,
+      error: (err) => console.error("Erro ao carregar estados", err)
+    })
+
     this.route.paramMap.subscribe({
       next: (response) => {
       const creci = response.get('creci')
@@ -46,14 +59,21 @@ export class CreateAccountComponent implements OnInit {
   }
 
   verificaCreci(  ){
-     this.accountService.verificaCreci( this.account.creci ).subscribe(response => { 
-     this.creciValido = true;
-      this.account.creci=response.creci
-      this.account.nome= response.nome
-     }, error => {
-      console.error('Erro:', error);
-      alert("Ops! Algo deu errado" )
-     });
+    console.log("verificaCreci")
+    console.log( this.account)
+     this.accountService.verificaCreci( this.account.creci, this.account.siglaEstado ).subscribe({ 
+      next: (response: { creci: string; nome: string; }) => {
+        if(response){
+          console.log("verificacreci subscribe")
+        this.creciValido = true;
+        this.account.creci=response.creci
+        this.account.nome= response.nome
+        }
+      },
+      error: (err) => {
+      console.error('Erro:', err);
+      alert("Ops! Algo deu errado");
+     }});
   
       // this.creciValido = true;
       // this.account.creci='96644'
@@ -81,5 +101,9 @@ export class CreateAccountComponent implements OnInit {
         console.error(error);
       } 
       }
+    }
+
+    setEstado(siglaEstado : string){
+      this.account.siglaEstado = siglaEstado
     }
 }

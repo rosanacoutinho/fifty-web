@@ -48,7 +48,6 @@ export class OpcaoFormComponent implements OnInit{
 
  tiposImoveis: TipoImovel[] = []; 
  tiposNegocios: TipoNegocio[] = []; 
- 
  isEditing: boolean = false;
 
  constructor(
@@ -60,9 +59,9 @@ export class OpcaoFormComponent implements OnInit{
 
  
  ngOnInit(): void {
-
-  //obter o id do corretor via servico
-   this.userDataService.currentData.subscribe(user => this.id_corretor = user.id);
+  const id = window.localStorage.getItem("id");
+  if(id)
+    this.id_corretor = id;
 
    //traz tipo de imoveis 
    this.geralService.getTiposImoveis().subscribe({
@@ -108,8 +107,9 @@ export class OpcaoFormComponent implements OnInit{
     });}
     else{
       this.opcao.corretor.id= this.id_corretor
+      console.log(this.id_corretor)
       console.log(this.opcao)
-    this.opcaoService.addOpcao(this.opcao).subscribe({
+      this.opcaoService.addOpcao(this.opcao).subscribe({
       next: () => { this.router.navigate(['/listaopcao'])},
       error: (err) =>{
         console.error(err);
