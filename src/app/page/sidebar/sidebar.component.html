@@ -1,0 +1,12 @@
+<nav>
+    <div class="superior">
+      <a routerLink="/home">Home</a>
+      <a routerLink="/listaopcao">Minhas Opções</a>
+      <a routerLink="/listaperfil">Meus Perfis</a>
+      <a [routerLink]="['/corretorForm', user.creci]">Meu Perfil</a>
+    </div>
+    <div class="inferior">
+      <a [routerLink]="['/create-account', user.creci]">Meu Cadastro</a>
+      <a routerLink="/login" (click)="logOut()">Sair</a>
+    </div>
+  </nav>

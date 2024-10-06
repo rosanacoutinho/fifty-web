@@ -1,0 +1,38 @@
+<form (ngSubmit)="onSubmit()"></form>
+    <h2>Meu Perfil</h2>
+      <br>
+      <div class="form-row">
+        <div class="col">
+            <img src={{corretor.urlPhoto}} alt="Descrição da imagem" style="width: 300px">
+        </div>
+        <div class="col">
+          <label>Nome</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="nomeCorretor" [(ngModel)]="corretor.nome" placeholder="Seu Nome">
+          </div>
+          <label>Telefone</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="telefoneCorretor" [(ngModel)]="corretor.telefone" placeholder="(xx)xxxxxxxxx">
+          </div>
+          <label>E-mail</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="emailCorretor" [(ngModel)]="corretor.email" placeholder="exemplo@email.com">
+          </div>
+          <label>Site</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="siteCorretor" [(ngModel)]="corretor.site" placeholder="site.com.br">
+          </div>
+          <label>Instagram</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="instagramCorretor" [(ngModel)]="corretor.instagram" placeholder="Seu Instagram">
+          </div>
+          <label>Quem sou eu</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="euCorretor" [(ngModel)]="corretor.frase" placeholder="Fale sobre você">
+          </div>
+        </div>
+      </div>
+      <!-- <button class="btn btn-primary"  type="submit">Salvar</button>
+      <button class="btn btn-outline-primary"  (click)="voltar()">Cancelar</button> -->
+
+      

@@ -1,0 +1,176 @@
+<form (ngSubmit)="onSubmit()">
+    <h2>{{isEditing? 'Editar' : 'Criar'}} Opção</h2>
+      <br>
+      <div class="form-row">
+        <div class="col">
+          <label>Nome</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="nomeOpcao" [(ngModel)]="opcao.nomeOpcao" placeholder="Digite aqui um nome para identificar sua opcao">
+          </div>
+        </div>
+        <div class="col">
+          <label>Tipo Imóvel</label>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{opcao.tipo}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li *ngFor="let tipo of tiposImoveis">
+                    <a class="dropdown-item" (click)="setTipoImoveis(tipo.tipo)">{{tipo.tipo}}</a>
+                  </li>           
+                </div>
+              </div>
+        </div>
+  
+        <div class="col">
+          <label>Tipo Negócio</label>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{opcao.negocio}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li *ngFor="let negocio of tiposNegocios">
+                    <a class="dropdown-item" (click)="setTipoNegocio(negocio.tipo)">{{negocio.tipo}}</a>
+                  </li>           
+                </div>
+              </div>
+        </div>
+  
+      </div>
+      <br>
+      <div class="form-row">
+        <div class="col">
+          <label>Valor (R$)</label>
+          <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" name="valor" [(ngModel)]="opcao.valor" >
+        </div>
+        </div>
+        <div class="col">
+          <label>Iptu Anual (R$)</label>
+          <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" name="iptu" [(ngModel)]="opcao.iptu" >
+        </div>
+        </div>
+        <div class="col">
+          <label>Condominio Mensal (R$)</label>
+          <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" name="condominio" [(ngModel)]="opcao.condominio" >
+        </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+          <div class="col">
+            <label>Área (m2)</label>
+            <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="area" [(ngModel)]="opcao.area" >
+          </div>
+          </div>
+          <div class="col">
+            <label>Quarto</label>
+            <div class="input-group input-group-sm mb-3">
+            <input type="number" class="form-control" name="quarto" [(ngModel)]="opcao.quarto" >
+          </div>
+          </div>
+          <div class="col">
+            <label>Suíte</label>
+            <div class="input-group input-group-sm mb-3">
+            <input type="number" class="form-control" name="suite" [(ngModel)]="opcao.suite" >
+          </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col">
+              <label>Banheiro</label>
+              <div class="input-group input-group-sm mb-3">
+              <input type="number" class="form-control" name="banheiro" [(ngModel)]="opcao.banheiro" >
+            </div>
+            </div>
+            <div class="col">
+              <label>Garagem</label>
+              <div class="input-group input-group-sm mb-3">
+              <input type="number" class="form-control" name="vagaGaragem" [(ngModel)]="opcao.vagaGaragem" >
+            </div>
+            </div>
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="varanda" [(ngModel)]="opcao.varanda" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Varanda
+                </label>
+              </div>
+            </div>
+          </div>
+      <br>
+      <br>
+      <br>
+      <h3>Endereço</h3>
+     <div class="form-row">
+          <div class="col">
+             <label>Cep</label>
+             <div class="input-group input-group-sm mb-3">
+             <input type="text" class="form-control" name="cep" [(ngModel)]="opcao.endereco.cep" placeholder="00000000">
+            </div>  
+             <button class="btn btn-outline-info btn-sm" (click)=buscarCEP() type="button">Buscar</button>
+              <button class="btn btn-outline-info btn-sm" (click)=cleanCEPinfo() type="button">Limpar dados</button>
+            </div> 
+          
+          <div class="col">
+            <label>País</label>
+            <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="pais" [(ngModel)]="opcao.endereco.pais" 
+             [disabled]="true">
+            </div>
+          </div>
+          <div class="col">
+            <label>Estado</label>
+            <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="estado" [(ngModel)]="opcao.endereco.estado"  
+             [disabled]="true">
+            </div>
+          </div>
+          <div class="col">
+            <label>Cidade</label>
+            <div class="input-group input-group-sm mb-3">
+              <input type="text" class="form-control" name="cidade" [(ngModel)]="opcao.endereco.cidade" 
+               [disabled]="true">
+              </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col">
+              <label>Bairro</label>
+              <div class="input-group input-group-sm mb-3">
+              <input type="text" class="form-control" name="bairro" [(ngModel)]="opcao.endereco.bairro" 
+               [disabled]="true">
+              </div>
+            </div>
+            <div class="col">
+              <label>Rua</label>
+              <div class="input-group input-group-sm mb-3">
+              <input type="text" class="form-control" name="rua" [(ngModel)]="opcao.endereco.rua" 
+               [disabled]="true">
+              </div>
+            </div>
+            <div class="col">
+              <label>Número</label>
+              <div class="input-group input-group-sm mb-3">
+              <input type="text" class="form-control" name="numero" [(ngModel)]="opcao.endereco.numero" >
+            </div>
+            </div>
+            <div class="col">
+              <label>Complemento</label>
+              <div class="input-group input-group-sm mb-3">
+                <input type="text" class="form-control" name="complemento" [(ngModel)]="opcao.endereco.complemento" placeholder="apto">
+              </div>
+              </div>
+          </div> 
+      <br>
+  
+      <button class="btn btn-primary"  type="submit">Salvar</button>
+      <button class="btn btn-outline-primary"  (click)="voltar()">Voltar</button>
+      
+    </form>
+  

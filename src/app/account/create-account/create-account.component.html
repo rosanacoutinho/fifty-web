@@ -1,0 +1,77 @@
+<h2 class="text-center">{{isEditing? 'Editar' : 'Fazer'}} Cadastro</h2>
+
+<div class="form-group">
+    
+  <div class="form-row">
+        <div class="col">
+              <label>Creci</label>
+              <div class="input-group input-group-sm mb-3">
+                  <input class="form-control" type="text" name="creci" id="creci" [(ngModel)]="account.creci" required [disabled]=creciValido/>    
+              </div>
+        </div>
+
+        <div class="col">
+                <label>Estado</label>
+                <div class="dropdown" >
+                  <button  class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{account.siglaEstado}}
+                  </button>
+                  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li *ngFor="let estado of estados">
+                      <a class="dropdown-item" (click)="setEstado( estado.sigla)">{{estado.sigla}} - {{estado.nome}}</a>
+                    </li>           
+                  </div>
+                </div>
+        </div>
+        <div class="col">
+              <div *ngIf="!creciValido">
+                <br>
+                <div class="input-group input-group-sm mb-3" >
+                   <button type="button" class="btn btn-light btn-sm" (click)="verificaCreci()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                      </svg>
+                    </button>
+                </div>            
+              </div>
+        </div>
+  </div>
+
+
+</div>
+
+
+
+<form (ngSubmit)="onSubmit()" ngNativeValidate #form="ngForm">
+  <div *ngIf="creciValido">
+  <div class="form-group">
+    <label>Nome</label>
+    <input class="form-control" type="nome" name="nome" id="nome" [(ngModel)]="account.nome" [disabled]=creciValido />
+  </div>
+  <div class="form-group">
+    <label>Celular</label>
+    <input class="form-control" type="telefone" name="telefone" id="telefone" [(ngModel)]="account.telefone" placeholder="(xx)xxxxxxxxx" mask="(00) 000000000" minlength="11" maxlength="11" required/>
+  </div>
+  <div class="form-group">
+    <label>E-mail</label>
+    <input class="form-control" type="email" name="email" id="email" [(ngModel)]="account.email" placeholder="nome@exemplo.com" ngModel #email="ngModel" email minlength="7" required/>
+  </div>
+  <div class="form-group" *ngIf="!isEditing">
+    <label>Senha</label>
+    <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="account.senha" placeholder="Senha" required/>
+  </div>
+  <div class="form-group" *ngIf="!isEditing">
+    <label>Confirmação de Senha</label>
+    <input class="form-control" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme sua Senha" required/>
+  </div>
+  <br>
+  <div class="form-check" required *ngIf="!isEditing">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+      Li e concordo com os Termos e Condições
+    </label>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary btn-block">{{isEditing? 'Salvar' : 'Criar conta'}}</button>
+</div>
+</form>
