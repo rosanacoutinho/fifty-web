@@ -106,6 +106,8 @@ export class OpcaoFormComponent implements OnInit{
 
  onSubmit(){
   if(this.isEditing){
+    this.opcao.corretor =  {id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', urlPhoto:''},
+    this.opcao.corretor.id = this.id_corretor
     this.opcaoService.updateOpcao(this.opcao)
     .subscribe({
       next: () => {
