@@ -57,8 +57,8 @@ export class OpcaoFormComponent implements OnInit{
  tiposImoveis: TipoImovel[] = []; 
  tiposNegocios: TipoNegocio[] = []; 
  isEditing: boolean = false;
- posicoes: string[] =  ["FRENTE", "FUNDOS"]; 
- sois: string[] = ["MANHA", "TARDE"]; 
+ posicoes: string[] =  ["FRENTE", "FUNDOS", "LATERAL", "INDEFINIDO"]; 
+ sois: string[] = ["MANHA", "TARDE", "MANHA_E_TARDE",  "NAO_SE_APLICA"]; 
 
  constructor(
   private opcaoService: OpcaoService,
