@@ -47,15 +47,17 @@ export class OpcaoFormComponent implements OnInit{
   iptu: '',
   condominio: '',
   andar:'',
-  sol:'',
+  sol:'MANHA',
   descricao:'',
-  posicao:'',
+  posicao:'FRENTE',
   numeroMatchings: 0
  }
 
  tiposImoveis: TipoImovel[] = []; 
  tiposNegocios: TipoNegocio[] = []; 
  isEditing: boolean = false;
+ posicoes: string[] =  ["FRENTE", "FUNDOS"]; 
+ sois: string[] = ["MANHA", "TARDE"]; 
 
  constructor(
   private opcaoService: OpcaoService,
@@ -103,7 +105,6 @@ export class OpcaoFormComponent implements OnInit{
 
  onSubmit(){
   if(this.isEditing){
-    console.log(this.opcao)
     this.opcaoService.updateOpcao(this.opcao)
     .subscribe({
       next: () => {
@@ -115,8 +116,6 @@ export class OpcaoFormComponent implements OnInit{
     });}
     else{
       this.opcao.corretor.id= this.id_corretor
-      console.log(this.id_corretor)
-      console.log(this.opcao)
       this.opcaoService.addOpcao(this.opcao).subscribe({
       next: () => { this.router.navigate(['/listaopcao'])},
       error: (err: any) =>{
@@ -157,5 +156,13 @@ export class OpcaoFormComponent implements OnInit{
 
       setTipoNegocio(negocio : string){
         this.opcao.negocio = negocio
+      }
+
+      setPosicao(posicao: string){
+        this.opcao.posicao = posicao
+      }
+
+      setSol(sol: string){
+        this.opcao.sol = sol
       }
 }

@@ -3,7 +3,9 @@
       <br>
       <div class="form-row">
         <div class="col">
-            <img src={{corretor.urlPhoto}} alt="Descrição da imagem" style="width: 300px">
+            <img class="rounded-circle" src={{corretor.urlPhoto}} style="width: 300px">
+            <br>
+            <input type="file" (change) ="onFileSelected($event)">
         </div>
         <div class="col">
           <label>Nome</label>
@@ -32,7 +34,6 @@
           </div>
         </div>
       </div>
-      <!-- <button class="btn btn-primary"  type="submit">Salvar</button>
-      <button class="btn btn-outline-primary"  (click)="voltar()">Cancelar</button> -->
+      <button class="btn btn-primary"  type="submit">Salvar</button>
 
       

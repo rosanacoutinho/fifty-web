@@ -29,6 +29,7 @@ export class PerfilListComponent implements OnInit {
 
  ngOnInit(): void {
   this.userDataService.currentData.subscribe((user: { id: string; }) => this.id_corretor = user.id);
+  console.log(this.id_corretor)
   this.buscarPerfis(this.id_corretor);
 }
 

@@ -20,14 +20,24 @@ export class CorretorFormComponent {
   constructor(
     private perfilService: PerfilService,
     private corretorService: CorretorService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   corretor: Corretor = { id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', urlPhoto:''}
   opcoes: Opcao[] = []
   perfis: Perfil[] = []
 
-  onSubmit(){}
+  onSubmit(){
+      this.corretorService.updateCorretor(this.corretor)
+      .subscribe({
+        next: () => {
+          alert("Dados atualizados com sucesso!")
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      });
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
@@ -43,6 +53,17 @@ export class CorretorFormComponent {
       } else{
       }
     }});
+  }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e:any) => {
+        this.corretor.urlPhoto = e.target?.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
 

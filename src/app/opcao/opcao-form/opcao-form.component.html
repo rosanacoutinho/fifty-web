@@ -34,9 +34,50 @@
                   </li>           
                 </div>
               </div>
+        </div>  
+      </div>
+      <br>
+
+      <div class="form-row">
+
+        <div class="col">
+          <label>Posição</label>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{opcao.posicao}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li *ngFor="let posicao of posicoes">
+                    <a class="dropdown-item" (click)="setPosicao(posicao)">{{posicao}}</a>
+                  </li>           
+                </div>
+              </div>
         </div>
   
+        <div class="col">
+          <label>Sol</label>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{opcao.sol}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li *ngFor="let sol of sois">
+                    <a class="dropdown-item" (click)="setSol(sol)">{{sol}}</a>
+                  </li>           
+                </div>
+              </div>
+        </div>  
+
+        <div class="col">
+          <label>Andar</label>
+          <div class="input-group input-group-sm mb-3">
+          <input type="number" class="form-control" name="andar" [(ngModel)]="opcao.andar" >
+        </div>
+        </div>
+
       </div>
+
+
       <br>
       <div class="form-row">
         <div class="col">
@@ -58,7 +99,6 @@
         </div>
         </div>
       </div>
-      <br>
       <div class="form-row">
           <div class="col">
             <label>Área (m2)</label>
@@ -79,7 +119,6 @@
           </div>
           </div>
         </div>
-        <br>
         <div class="form-row">
             <div class="col">
               <label>Banheiro</label>
@@ -102,7 +141,15 @@
               </div>
             </div>
           </div>
-      <br>
+          <div class="form-row">
+            <div class="col">
+              <label>Descricao</label>
+              <div class="input-group input-group-sm mb-3">
+              <input type="text" class="form-control" name="descricao" [(ngModel)]="opcao.descricao" >
+            </div>
+            </div>
+          </div>
+
       <br>
       <br>
       <h3>Endereço</h3>

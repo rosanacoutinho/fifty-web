@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PerfilService } from '../perfil.service';
 import { PerfilMatch } from '../../models/perfilMatch';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'app-perfil-matching',
+  standalone: true,
   templateUrl: './perfil-matching.component.html',
+  imports: [CommonModule, FormsModule],
   styleUrls: ['./perfil-matching.component.css']
 })
 export class PerfilMatchingComponent implements OnInit {

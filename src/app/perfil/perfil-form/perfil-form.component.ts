@@ -126,6 +126,8 @@ export class PerfilFormComponent implements OnInit{
     this.perfilService.updatePerfil(this.perfil)
     .subscribe({
       next: () => {
+        console.log("perfil na edição")
+        console.log(this.perfil)
         this.router.navigate(['/listaperfil']);
       },
       error: (err) => {
@@ -134,6 +136,8 @@ export class PerfilFormComponent implements OnInit{
     });}
     else{   
       this.perfil.corretor.id = this.id_corretor
+      console.log("perfil na criação")
+      console.log(this.perfil)
       this.perfilService.addPerfil(this.perfil).subscribe({
       next: () => { this.router.navigate(['/listaperfil'])},
       error: (err) =>{
