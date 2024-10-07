@@ -12,6 +12,7 @@ import { PerfilMatchingComponent } from './perfil/perfil-matching/perfil-matchin
 import { CorretorPerfilComponent } from './corretor/corretor-perfil/corretor-perfil.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { CorretorFormComponent } from './corretor/corretor-form/corretor-form.component';
+import { VitrineComponent } from './opcao/vitrine/vitrine.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -28,7 +29,8 @@ export const routes: Routes = [
   {path:"opcaoMatching/:id_opcao", component: OpcaoMatchingComponent, canActivate: [AuthGuard]},
   {path:"perfilMatching/:id_perfil", component: PerfilMatchingComponent, canActivate: [AuthGuard]},
   {path:"corretor/:creci", component: CorretorPerfilComponent, canActivate: [AuthGuard]},
-  {path:"corretorForm/:creci", component: CorretorFormComponent, canActivate: [AuthGuard]}
+  {path:"corretorForm/:creci", component: CorretorFormComponent, canActivate: [AuthGuard]},
+  {path:"vitrine/:id_opcao", component: VitrineComponent}
 ];
 
 @NgModule({

@@ -21,5 +21,6 @@ export interface Opcao {
         posicao: string,
         sol: string,
         andar: string,
-        numeroMatchings: number
+        numeroMatchings: number,
+        urls: string[]
  }

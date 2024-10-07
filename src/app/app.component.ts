@@ -25,7 +25,6 @@ export class AppComponent {
   isLoading = false;
 
   isUserLoggedIn(): boolean {
-    console.log('Usuario logado: ' + this.accountService.isUserLoggedIn())
     return this.accountService.isUserLoggedIn();
   }
 }

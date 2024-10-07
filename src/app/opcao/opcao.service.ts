@@ -44,7 +44,12 @@ export class OpcaoService {
   }
 
   getCEP(cep:string): Observable<any>{
-   const url = `https://viacep.com.br/ws/${cep}/json/`;
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    return this.http.get<any>(url);
+  }
+
+  getVitrine(id_opcao: string): Observable<any>{
+    const url = `${environment.api}/vitrine/${id_opcao}`;
     return this.http.get<any>(url);
   }
 

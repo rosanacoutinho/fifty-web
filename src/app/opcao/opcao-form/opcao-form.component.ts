@@ -50,7 +50,8 @@ export class OpcaoFormComponent implements OnInit{
   sol:'MANHA',
   descricao:'',
   posicao:'FRENTE',
-  numeroMatchings: 0
+  numeroMatchings: 0,
+  urls:[]
  }
 
  tiposImoveis: TipoImovel[] = []; 
