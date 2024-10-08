@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { OpcaoMatch } from '../../models/opcaoMatch';
 import { OpcaoService } from '../opcao.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-opcao-matching',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './opcao-matching.component.html',
   styleUrls: ['./opcao-matching.component.css']
 })

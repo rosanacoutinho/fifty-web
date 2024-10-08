@@ -1,12 +1,17 @@
-<form (ngSubmit)="onSubmit()"></form>
-    <h2>Meu Perfil</h2>
+
+<h2>Meus Dados</h2>
       <br>
       <div class="form-row">
+
+
         <div class="col">
             <img class="rounded-circle" src={{corretor.urlPhoto}} style="width: 300px">
             <br>
             <input type="file" (change) ="onFileSelected($event)">
-        </div>
+            <button class="btn btn-primary"  (click)="updatePhotoCorretor()"  type="button">Enviar foto</button>
+          </div>
+
+
         <div class="col">
           <label>Nome</label>
           <div class="input-group input-group-sm mb-3">
@@ -32,12 +37,16 @@
           <div class="input-group input-group-sm mb-3">
             <input type="text" class="form-control" name="instagramCorretor" [(ngModel)]="corretor.instagram" placeholder="Seu Instagram">
           </div>
-          <label>Quem sou eu</label>
+          <label>Sobre</label>
           <div class="input-group input-group-sm mb-3">
             <input type="text" class="form-control" name="euCorretor" [(ngModel)]="corretor.frase" placeholder="Fale sobre você">
           </div>
+
+          <button class="btn btn-primary"  (click)="updateCorretor()"  type="button">Salvar</button>
+
         </div>
+        
       </div>
-      <button class="btn btn-primary"  type="submit">Salvar</button>
+      
 
       

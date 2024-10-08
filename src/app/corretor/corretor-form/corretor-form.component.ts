@@ -23,20 +23,38 @@ export class CorretorFormComponent {
     private route: ActivatedRoute,
   ) { }
 
+
+  photo: File = new File(["conteúdo do arquivo"], "nome_do_arquivo.jpg", { type: "image/jpeg" });
+
   corretor: Corretor = { id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', urlPhoto:''}
   opcoes: Opcao[] = []
   perfis: Perfil[] = []
 
+
+  updateCorretor(){
+    this.corretorService.updateCorretor(this.corretor)
+    .subscribe({
+      next: () => {
+        alert("Dados atualizados com sucesso!")
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    });
+  }
+
+  updatePhotoCorretor(){
+    this.corretorService.updatePhotoCorretor( this.corretor.creci , this.photo ).subscribe({
+      next: () => {
+        alert("Foto atualizada com sucesso!")
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    });
+  }
+
   onSubmit(){
-      this.corretorService.updateCorretor(this.corretor)
-      .subscribe({
-        next: () => {
-          alert("Dados atualizados com sucesso!")
-        },
-        error: (err: any) => {
-          console.error(err);
-        }
-      });
   }
 
   ngOnInit(): void {
@@ -55,7 +73,9 @@ export class CorretorFormComponent {
     }});
   }
 
+  
   onFileSelected(event: any): void {
+    this.photo =  event.target.files[0];
     const file: File = event.target.files[0];
     if (file) {
       const reader = new FileReader()

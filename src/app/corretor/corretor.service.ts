@@ -22,14 +22,23 @@ export class CorretorService {
     return this.http.get<any>(url);
   }
 
-  getFoto(creci: string): Observable<any>{
-    const url =`${environment.api}/foto/${creci}`;
-    return this.http.get<{ imagem: string }>(url);
+  updatePhotoCorretor( creci : string,  photo : File): Observable<any>{
+    const formData: FormData = new FormData();
+    formData.append('file', photo , photo.name );
+    formData.append('creci', creci  );
+   
+      const url =`${environment.api}/photos/corretor`;
+
+    return  this.http.post<any>(url, formData );
   }
+
+  //let imagem: HTMLImageElement = new Image();
+// imagem.src = "caminho/para/sua/imagem.jpg"
+
   
-  updateCorretor(corretor: Corretor): Observable<any>{      //validar endpoint e parametros corretos
-    const url =`${environment.api}/corretor/${corretor}`;
-    return this.http.put<{ imagem: string }>(url, corretor);
+  updateCorretor(corretor: Corretor): Observable<any>{    
+    const url =`${environment.api}/corretores`;
+    return this.http.put<Corretor>(url, corretor);
   }
 
 }

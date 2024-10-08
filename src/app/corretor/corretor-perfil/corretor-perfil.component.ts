@@ -35,12 +35,10 @@ export class CorretorPerfilComponent implements OnInit {
       next: (response) => {
       const creci = response.get('creci')
       if(creci){
-        console.log("if creci")
         this.corretorService.getCorretor(creci).subscribe({
           next: (response: any) => {this.corretor = response, console.log(response) },
           error: (err: any) => console.error("Erro ao carregar corretor", err)
         }),
-        console.log(this.corretor.id),
         this.opcaoService.getOpcoes(this.corretor.id).subscribe({
           next: (response: Opcao[]) => {this.opcoes = response, console.log(response)},
           error: (err: any) => console.error("Erro ao carregar opcoes", err)
@@ -51,10 +49,6 @@ export class CorretorPerfilComponent implements OnInit {
         })
       } 
     }});
-
-    this.corretorService.getFoto(this.corretor.creci).subscribe((data: { imagem: any; }) => {
-      this.imagemUrl = this.sanitizer.bypassSecurityTrustUrl(`data:image/jpeg;base64,${data.imagem}`);
-    });
   }
 
   voltar(){

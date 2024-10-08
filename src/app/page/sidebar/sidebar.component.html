@@ -3,10 +3,11 @@
       <a routerLink="/home">Home</a>
       <a routerLink="/listaopcao">Minhas Opções</a>
       <a routerLink="/listaperfil">Meus Perfis</a>
-      <a [routerLink]="['/corretorForm', user.creci]">Meu Perfil</a>
+      <a [routerLink]="['/corretorForm', user.creci]">Meus Dados</a>
     </div>
     <div class="inferior">
-      <a [routerLink]="['/create-account', user.creci]">Meu Cadastro</a>
+      <a [routerLink]="['/create-account', user.creci]">Conta
+      </a>
       <a routerLink="/login" (click)="logOut()">Sair</a>
     </div>
   </nav>
