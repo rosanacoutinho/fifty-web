@@ -123,6 +123,8 @@ export class PerfilFormComponent implements OnInit{
 
  onSubmit(){
   if(this.isEditing){
+    this.perfil.corretor = {id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', urlPhoto:''}
+    this.perfil.corretor.id = this.id_corretor    
     this.perfilService.updatePerfil(this.perfil)
     .subscribe({
       next: () => {
