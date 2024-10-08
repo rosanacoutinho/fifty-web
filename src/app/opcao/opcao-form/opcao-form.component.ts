@@ -51,7 +51,7 @@ export class OpcaoFormComponent implements OnInit{
   descricao:'',
   posicao:'FRENTE',
   numeroMatchings: 0,
-  urls:[]
+  urlsPhoto:new Map<string, string>()
  }
 
  tiposImoveis: TipoImovel[] = []; 
@@ -59,6 +59,7 @@ export class OpcaoFormComponent implements OnInit{
  isEditing: boolean = false;
  posicoes: string[] =  ["FRENTE", "FUNDOS"]; 
  sois: string[] = ["MANHA", "TARDE"]; 
+ arrayUrlsPhoto: string[] = [];
 
  constructor(
   private opcaoService: OpcaoService,
@@ -101,7 +102,12 @@ export class OpcaoFormComponent implements OnInit{
     } else{
     }
   }});
-
+    this.arrayUrlsPhoto = Array.from(this.opcao.urlsPhoto, ([key, value]) => `${value}`);
+  console.log(this.opcao)
+  console.log("map")
+  console.log(this.opcao.urlsPhoto)
+  console.log("array")
+  console.log(this.arrayUrlsPhoto)
   }
 
  onSubmit(){

@@ -10,7 +10,11 @@
         <div class="col">
           <label>Nome</label>
           <div class="input-group input-group-sm mb-3">
-            <input type="text" class="form-control" name="nomeCorretor" [(ngModel)]="corretor.nome" placeholder="Seu Nome">
+            <input type="text" class="form-control" name="nomeCorretor" [(ngModel)]="corretor.nome" [disabled] = true>
+          </div>
+          <label>Creci</label>
+          <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" name="creciCorretor" [(ngModel)]="corretor.creci" [disabled] = true>
           </div>
           <label>Telefone</label>
           <div class="input-group input-group-sm mb-3">

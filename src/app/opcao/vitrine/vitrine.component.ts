@@ -3,17 +3,19 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OpcaoService } from '../opcao.service';
 import { Opcao } from '../../models/opcao';
 import { CommonModule } from '@angular/common';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { OpcaoVitrine } from '../../models/opcaoVitrine';
 
 @Component({
   selector: 'app-vitrine',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, CarouselModule],
   templateUrl: './vitrine.component.html',
   styleUrl: './vitrine.component.css'
 })
 export class VitrineComponent {
 
-  opcao: Opcao = {
+  opcao: OpcaoVitrine = {
     id:'' ,
     corretor: {id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', urlPhoto:''},
     nomeOpcao: '',
