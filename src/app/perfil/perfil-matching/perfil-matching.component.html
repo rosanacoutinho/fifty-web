@@ -1,4 +1,4 @@
-<h3 class="mt-5 mb-3">Opções para para o meu Perfil:</h3>
+<h3 class="mt-5 mb-3">Opções para para o meu Perfil de interesse:</h3>
 <br>
 <br>
 <table class="table table-striped" >
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let match of matches">
-            <td>{{match.opcao.corretor.nome}}</td>
+            <td><a href="#" [routerLink]="['/corretor', match.opcao.corretor.creci]">{{match.opcao.corretor.nome}}</a></td>
             <td>{{match.opcao.valor}}</td>
             <td>{{match.opcao.area}}</td>
             <td>{{match.opcao.quarto}}</td>

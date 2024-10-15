@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PerfilService } from '../perfil.service';
 import { PerfilMatch } from '../../models/perfilMatch';
 import { CommonModule } from '@angular/common';
@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-perfil-matching',
   standalone: true,
   templateUrl: './perfil-matching.component.html',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   styleUrls: ['./perfil-matching.component.css']
 })
 export class PerfilMatchingComponent implements OnInit {

@@ -1,4 +1,4 @@
-<h3 class="mt-5 mb-3">Parceiros interessados na minha Opção:</h3>
+<h3 class="mt-5 mb-3">Interessados na minha Opção:</h3>
 <br>
 <br>
 <table class="table table-striped" *ngIf="matches.length">
@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let match of matches">
-            <td>{{match.perfil.corretor.nome}}</td>
+            <td><a href="#" [routerLink]="['/corretor', match.perfil.corretor.creci]">{{match.perfil.corretor.nome}}</a></td>
             <td>{{match.perfil.corretor.telefone}}</td>
             <td>
                 <a class="btn btn-sm btn-success mx-1" href="https://wa.me/{{match.perfil.corretor.telefone}}" target="_blank">

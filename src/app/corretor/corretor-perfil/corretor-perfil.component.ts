@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Corretor } from '../../models/corretor';
 import { Opcao } from '../../models/opcao';
 import { Perfil } from '../../models/perfil';
 import { OpcaoService } from '../../opcao/opcao.service';
 import { PerfilService } from '../../perfil/perfil.service';
 import { CorretorService } from '../corretor.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
   selector: 'app-corretor-perfil',
@@ -23,7 +22,8 @@ export class CorretorPerfilComponent implements OnInit {
     private corretorService: CorretorService,
     private opcaoService: OpcaoService,
     private perfilService: PerfilService,
-    private sanitizer: DomSanitizer) { }
+    private location: Location
+    ) { }
 
   corretor: Corretor = { id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', urlPhoto:''}
   opcoes: Opcao[] = []
@@ -51,7 +51,7 @@ export class CorretorPerfilComponent implements OnInit {
     }});
   }
 
-  voltar(){
-    this.router.navigate(['/parceiros'])
+  voltar(): void {
+    this.location.back();
   }
 }
