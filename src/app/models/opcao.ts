@@ -3,6 +3,7 @@ import { Endereco } from "./endereco"
 
 export interface Opcao {
         id: string,
+        codigo:number,
         corretor: Corretor,
         tipo: string,
         negocio: string,    

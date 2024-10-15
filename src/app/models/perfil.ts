@@ -4,6 +4,7 @@ import { Endereco } from "./endereco"
 export interface Perfil {
         nomePerfil: string,
         id: string,
+        codigo:number,
         corretor: Corretor,
         tipo: string,  
         negocio: string,    

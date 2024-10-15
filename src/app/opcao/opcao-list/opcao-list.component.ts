@@ -84,6 +84,7 @@ buscarOpcoes(id_corretor: string):void{
     });
   }
 
+
   abrirLinkVitrine(idOpcao : string) {
     const url = `http://localhost:4200/vitrine/${idOpcao}`;
     window.open(url, '_blank');

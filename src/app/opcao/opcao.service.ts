@@ -39,8 +39,8 @@ export class OpcaoService {
   }
 
   getOpcoesMatch(id_opcao: string): Observable<any> {
-    const url = `${environment.api}/matching/opcoes/${id_opcao}`;
-    return this.http.post<any>(url,null);
+    const url = `${environment.api}/matching/opcao/${id_opcao}`;
+    return this.http.get<any>(url);
   }
 
   getCEP(cep:string): Observable<any>{
