@@ -45,4 +45,9 @@ export class PerfilMatchingComponent implements OnInit {
     this.router.navigate(['/listaperfil'])
   }
 
+  abrirLinkVitrine(idOpcao : string) {
+    const url = `http://localhost:4200/vitrine/${idOpcao}`;
+    window.open(url, '_blank');
+  } 
+  
 }

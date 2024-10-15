@@ -3,6 +3,7 @@ import { Endereco } from "./endereco"
 
 export interface OpcaoVitrine {
         id: string,
+        codigo:number,
         corretor: Corretor,
         tipo: string,
         negocio: string,    

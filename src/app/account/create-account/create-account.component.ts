@@ -110,4 +110,8 @@ export class CreateAccountComponent implements OnInit {
     setEstado(siglaEstado : string){
       this.account.siglaEstado = siglaEstado
     }
+
+    voltar(){
+      this.router.navigate(['/login'])
+    }
 }

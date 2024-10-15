@@ -1,3 +1,8 @@
 form {
     padding: 0% 30% 10% 30%;
+    width: 100%;
+}
+
+.painel-1{
+    width: 50%;
 }

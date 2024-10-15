@@ -17,6 +17,7 @@ export class VitrineComponent {
 
   opcao: OpcaoVitrine = {
     id:'' ,
+    codigo:0,
     corretor: {id:'', nome:'', email:'',telefone:0, instagram: '', site: '', frase: '', creci: '', urlPhoto:''},
     nomeOpcao: '',
     tipo: 'APARTAMENTO',

@@ -1,14 +1,28 @@
-<h2 class="text-center">Entrar</h2>
 
-<form (ngSubmit)="onSubmit()" #form="ngForm" >
-  <div class="form-group">
-    <label>Creci</label>
-    <input class="form-control" type="creci" name="creci" id="creci" [(ngModel)]="user.creci" required />
+<div id="painel-1" class="form-row">
+  <div class="col">
+    <h2 class="text-center">O Portal do Corretor Inteligente</h2>
+    <img src="https://corretor-foto-bucket.s3.us-east-2.amazonaws.com/home.jpg" alt="Descrição da imagem" style="width: 600px">
+  
   </div>
-  <div class="form-group">
-    <label>Senha</label>
-    <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="user.senha" required />
+  <div class="col">
+
+    <h2 class="text-center">Entrar</h2>
+    <form (ngSubmit)="onSubmit()" #form="ngForm" >
+      <div class="form-group">
+        <label>Creci</label>
+        <input class="form-control" type="creci" name="creci" id="creci" [(ngModel)]="user.creci" required />
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="user.senha" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="form.form.invalid" >Entrar</button>
+      <button type="button" class="btn btn-link btn-block" [routerLink]="['/create-account']">Registre-se</button>
+    </form>
+
   </div>
-  <button type="submit" class="btn btn-primary btn-block" [disabled]="form.form.invalid" >Entrar</button>
-  <button type="button" class="btn btn-link btn-block" [routerLink]="['/create-account']">Criar conta</button>
-</form>
+</div>
+
+
+
