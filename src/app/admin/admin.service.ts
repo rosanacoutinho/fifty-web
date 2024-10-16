@@ -18,14 +18,14 @@ import { Observable } from "rxjs";
         return this.http.get<any>(url);
       }
 
-      geraSenhaProvisoria(creci: string, siglaEstado: string): Observable<any>{
-        const body = { creci: creci, siglaEstado: siglaEstado};
+      geraSenhaProvisoria(creci: string): Observable<any>{
+        const body = { creci: creci, siglaEstado: ""};
         const url = `${environment.api}/admin/senha-provisoria`;   
         return this.http.put<any>(url, body);
       }
 
       resolveSolicitacao(id: string): Observable<any>{
-        const url = `${environment.api}/resolver-solicitacao/${id}`;   
+        const url = `${environment.api}/admin/resolver-solicitacao/${id}`;   
         return this.http.put<any>(url, null, { responseType: 'text' as 'json'});
       }
 

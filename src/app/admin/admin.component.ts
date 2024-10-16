@@ -19,14 +19,7 @@ export class AdminComponent {
   solicitacoesSenha: SolicitacaoSenha[] = []
 
   ngOnInit(): void {
-    this.adminService.getSolicitacoesSenha().subscribe({
-      next: (response) => {
-        this.solicitacoesSenha = response;
-      },
-      error: (err: any) => {
-        console.error('Erro ao obter dados:', err);
-      }
-    });
+    this.consultarSolicitacoes();
   }
 
   resolveSolicitacao(id: string){
@@ -40,13 +33,25 @@ export class AdminComponent {
     });
   }
 
-  gerarSenhaProvisoria(id: string){
-    this.adminService.geraSenhaProvisoria().subscribe({
+  gerarSenhaProvisoria(creci: string){
+    this.adminService.geraSenhaProvisoria(creci).subscribe({
       next: (response) => {
+        this.consultarSolicitacoes();
         alert(response)
       },
       error: (err: any) => {
         console.error(err);
+      }
+    });
+  }
+
+  consultarSolicitacoes(){
+    this.adminService.getSolicitacoesSenha().subscribe({
+      next: (response) => {
+        this.solicitacoesSenha = response;
+      },
+      error: (err: any) => {
+        console.error('Erro ao obter dados:', err);
       }
     });
   }
