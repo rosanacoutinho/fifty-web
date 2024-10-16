@@ -22,7 +22,8 @@ export class CreateAccountComponent implements OnInit {
     email: '',
     senha: '',
     siglaEstado:'',
-    token:''
+    token:'',
+    authorities: []
   };
 
   creciValido: boolean = false;
@@ -51,7 +52,7 @@ export class CreateAccountComponent implements OnInit {
         this.creciValido = true,
         this.isEditing = true,
         this.accountService.getAccount(creci).subscribe({
-          next: (response: { id: string; creci: string; nome: string; telefone: string; email: string; senha: string; siglaEstado: string; token: string;}) => {this.account = response ,
+          next: (response) => {this.account = response ,
             console.log(this.account)
           },
           error: (err: any) => console.error("Erro ao carregar usuário", err)

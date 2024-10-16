@@ -1,3 +1,4 @@
+import { Authority } from "./authority";
 
 export interface User {
     id: string,
@@ -6,5 +7,6 @@ export interface User {
     email: string,
     telefone: string, 
     senha: string,
-    token: string
+    token: string,
+    authorities: Authority[]
 }

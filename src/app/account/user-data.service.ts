@@ -13,7 +13,8 @@ export class UserDataService {
     email: '',
     telefone: '',
     senha: '',
-    token: ''
+    token: '',
+    authorities:[]
   };
 
   private dataSource = new BehaviorSubject<User>(this.user);
