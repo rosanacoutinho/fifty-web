@@ -19,10 +19,35 @@
       </div>
       <button type="submit" class="btn btn-primary btn-block" [disabled]="form.form.invalid" >Entrar</button>
       <button type="button" class="btn btn-link btn-block" [routerLink]="['/create-account']">Registre-se</button>
+      <button type="button" class="btn btn-link btn-block" data-toggle="modal" data-target="#myModal">Esqueci a senha</button>
     </form>
-
   </div>
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Esqueci a senha</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Creci</label>
+              <div class="input-group input-group-sm mb-3">
+                  <input class="form-control" type="text" name="creci" id="creci" [(ngModel)]="creci"/>    
+              </div>
+      </div>
+      
+      <div class="modal-body">{{responseText}}</div>
+      <div class="modal-footer" *ngIf="!responseText.length">
+        <button type="button" class="btn btn-primary" (click)="solicitarSenha(creci)">Solicitar nova senha</button>
+      </div>
+    </div>
+  </div>
+
 
 
 

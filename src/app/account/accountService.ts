@@ -58,6 +58,12 @@ export class AccountService {
     return await this.http.post<any>(url, user).toPromise();
   }
 
+  forgotPassword(creci: string): Observable<any>{  
+    const body = { creci: creci, siglaEstado: ""};
+    const url = `${environment.api}/auth/forgot-password`;   
+    return this.http.post<any>(url, body, { responseType: 'text' as 'json'} );
+  }
+
   getAccount(creci:string): Observable<any>{
     const url = `${environment.api}/corretores/${creci}`;
     return this.http.get<any>(url);
@@ -117,4 +123,5 @@ export class AccountService {
 function jwtDecode(token: string): any {
   throw new Error('Function not implemented.');
 }
+
 
