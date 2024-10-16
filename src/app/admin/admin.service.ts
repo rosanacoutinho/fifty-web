@@ -21,7 +21,7 @@ import { Observable } from "rxjs";
       geraSenhaProvisoria(creci: string): Observable<any>{
         const body = { creci: creci, siglaEstado: ""};
         const url = `${environment.api}/admin/senha-provisoria`;   
-        return this.http.put<any>(url, body);
+        return this.http.put<any>(url, body, { responseType: 'text' as 'json'});
       }
 
       resolveSolicitacao(id: string): Observable<any>{

@@ -25,7 +25,8 @@ export class AdminComponent {
   resolveSolicitacao(id: string){
     this.adminService.resolveSolicitacao(id).subscribe({
       next: (response) => {
-        alert(response)
+        this.consultarSolicitacoes();
+        alert("Solicitação concluída!")
       },
       error: (err: any) => {
         console.error(err);
@@ -36,8 +37,8 @@ export class AdminComponent {
   gerarSenhaProvisoria(creci: string){
     this.adminService.geraSenhaProvisoria(creci).subscribe({
       next: (response) => {
-        this.consultarSolicitacoes();
-        alert(response)
+        const itemIndex = this.solicitacoesSenha.findIndex(item => item.creci === creci)
+        this.solicitacoesSenha[itemIndex].senhaTemp = response
       },
       error: (err: any) => {
         console.error(err);

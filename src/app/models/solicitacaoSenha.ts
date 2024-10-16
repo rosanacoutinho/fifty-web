@@ -5,5 +5,6 @@ export interface SolicitacaoSenha {
     nome: string,
     telefone: number,
     data_solicitacao: Date,
-    solicitacao: string
+    solicitacao: string,
+    senhaTemp: string
 }
