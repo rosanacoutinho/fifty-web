@@ -64,6 +64,12 @@ export class AccountService {
     return this.http.post<any>(url, body, { responseType: 'text' as 'json'} );
   }
 
+  changePassword(oldPassword: string, newPassword: string): Observable<any>{  
+    const body = { oldPassword: oldPassword, newPassword: newPassword};
+    const url = `${environment.api}/auth/change-password`;   
+    return this.http.post<any>(url, body, { responseType: 'text' as 'json'} );
+  }
+
   getAccount(creci:string): Observable<any>{
     const url = `${environment.api}/corretores/${creci}`;
     return this.http.get<any>(url);

@@ -30,7 +30,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Esqueci a senha</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -42,12 +42,9 @@
       </div>
       
       <div class="modal-body">{{responseText}}</div>
-      <div class="modal-footer" *ngIf="!responseText.length">
+      <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="solicitarSenha(creci)">Solicitar nova senha</button>
       </div>
     </div>
   </div>
-
-
-
-
+  

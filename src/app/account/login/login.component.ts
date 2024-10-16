@@ -44,6 +44,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  close(){
+    this.creci=""
+    this.responseText = ""
+  }
+
   solicitarSenha(creci: string){
     this.accountService.forgotPassword(creci).subscribe({
       next: (response) => {

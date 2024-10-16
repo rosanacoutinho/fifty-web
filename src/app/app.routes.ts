@@ -13,6 +13,7 @@ import { CorretorPerfilComponent } from './corretor/corretor-perfil/corretor-per
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { CorretorFormComponent } from './corretor/corretor-form/corretor-form.component';
 import { VitrineComponent } from './opcao/vitrine/vitrine.component';
+import { AccountComponent } from './account/account/account.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -25,12 +26,12 @@ export const routes: Routes = [
   {path:"listaperfil", component: PerfilListComponent, canActivate: [AuthGuard]},
   {path:"novoperfil", component: PerfilFormComponent, canActivate: [AuthGuard]},
   {path:"editarPerfil/:id", component: PerfilFormComponent, canActivate: [AuthGuard]},
-  {path:"create-account/:creci", component: CreateAccountComponent, canActivate: [AuthGuard]},
   {path:"opcaoMatching/:id_opcao", component: OpcaoMatchingComponent, canActivate: [AuthGuard]},
   {path:"perfilMatching/:id_perfil", component: PerfilMatchingComponent, canActivate: [AuthGuard]},
   {path:"corretor/:creci", component: CorretorPerfilComponent, canActivate: [AuthGuard]},
   {path:"corretorForm/:creci", component: CorretorFormComponent, canActivate: [AuthGuard]},
-  {path:"vitrine/:id_opcao", component: VitrineComponent}
+  {path:"vitrine/:id_opcao", component: VitrineComponent},
+  {path:"account/:creci", component: AccountComponent}
 ];
 
 @NgModule({
