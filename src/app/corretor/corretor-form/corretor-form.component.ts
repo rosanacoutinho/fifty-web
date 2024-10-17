@@ -30,6 +30,9 @@ export class CorretorFormComponent {
   opcoes: Opcao[] = []
   perfis: Perfil[] = []
 
+  ngOnInit(): void {
+    this.carregarCorretor()
+  }
 
   updateCorretor(){
     this.corretorService.updateCorretor(this.corretor)
@@ -57,23 +60,7 @@ export class CorretorFormComponent {
   onSubmit(){
   }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe({
-      next: (response) => {
-      const creci = response.get('creci')
-      if(creci){
-        this.corretorService.getCorretor(creci).subscribe({
-          next: (response) => {this.corretor = response ,
-            console.log(this.corretor)
-          },
-          error: (err: any) => console.error("Erro ao carregar usuário", err)
-        })
-      } else{
-      }
-    }});
-  }
-
-  
+ 
   onFileSelected(event: any): void {
     this.photo =  event.target.files[0];
     const file: File = event.target.files[0];
@@ -84,6 +71,27 @@ export class CorretorFormComponent {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  carregarCorretor(){
+    this.route.paramMap.subscribe({
+      next: (response) => {
+      const creci = response.get('creci')
+      if(creci){
+        this.corretorService.getCorretor(creci).subscribe({
+          next: (response) => {
+            this.corretor = response ,
+            console.log(this.corretor)
+          },
+          error: (err: any) => console.error("Erro ao carregar usuário", err)
+        })
+      } else{
+      }
+    }});
+  }
+
+  cancelar(){
+    this.carregarCorretor()
   }
 }
 

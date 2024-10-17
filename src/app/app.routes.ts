@@ -15,6 +15,7 @@ import { CorretorFormComponent } from './corretor/corretor-form/corretor-form.co
 import { VitrineComponent } from './opcao/vitrine/vitrine.component';
 import { AccountComponent } from './account/account/account.component';
 import { AdminComponent } from './admin/admin.component';
+import { AjudaComponent } from './ajuda/ajuda.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -33,7 +34,8 @@ export const routes: Routes = [
   {path:"corretorForm/:creci", component: CorretorFormComponent, canActivate: [AuthGuard]},
   {path:"vitrine/:id_opcao", component: VitrineComponent},
   {path:"account/:creci", component: AccountComponent},
-  {path:"admin", component: AdminComponent, canActivate: [AuthGuard]}
+  {path:"admin", component: AdminComponent, canActivate: [AuthGuard]},
+  {path:"ajuda", component: AjudaComponent}
 ];
 
 @NgModule({

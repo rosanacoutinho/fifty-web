@@ -6,6 +6,7 @@
       <a [routerLink]="['/corretorForm', user.creci]">Meus Dados</a>
     </div>
     <div class="inferior">
+      <a [routerLink]="['/ajuda']">Ajuda</a>
       <a [routerLink]="['/admin']" *ngIf="ehAdmin()">Admin</a>
       <a [routerLink]="['/account', user.creci]">Conta</a>
       <a routerLink="/login" (click)="logOut()">Sair</a>
