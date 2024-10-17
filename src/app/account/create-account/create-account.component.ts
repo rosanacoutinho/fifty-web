@@ -5,6 +5,7 @@ import { Estado } from '../../models/estado';
 import { PerfilService } from '../../perfil/perfil.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { error } from 'console';
 
 @Component({
   selector: 'app-create-account',
@@ -70,7 +71,7 @@ export class CreateAccountComponent implements OnInit {
      this.accountService.verificaCreci( this.account.creci, this.account.siglaEstado ).subscribe({ 
       next: (response: { creci: string; nome: string; }) => {
         if(response){
-          console.log("verificacreci subscribe")
+          this.mensagem = ''
         this.creciValido = true;
         this.account.creci=response.creci
         this.account.nome= response.nome
@@ -78,7 +79,8 @@ export class CreateAccountComponent implements OnInit {
       },
       error: (err: any) => {
       console.error('Erro:', err);
-      alert("Ops! Algo deu errado");
+      this.mensagem = err.error.message  
+      console.error( err.error.message);
      }});
   
       // this.creciValido = true;
