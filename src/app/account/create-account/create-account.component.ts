@@ -28,7 +28,8 @@ export class CreateAccountComponent implements OnInit {
 
   creciValido: boolean = false;
   isEditing: boolean = false;
-  estados: Estado[] = []; 
+  estados: Estado[] = [];
+  mensagem: string = "" 
 
   constructor(
     private perfilService: PerfilService,
@@ -101,7 +102,9 @@ export class CreateAccountComponent implements OnInit {
     else {
       try {
         const result = await this.accountService.createAccount(this.account);
-        alert("Usuário cadastrado com sucesso!"); 
+        if (result.sucesso)
+          this.router.navigate(['login']);
+        this.mensagem = result.detalhe
       } catch (error){
         console.error(error);
       } 

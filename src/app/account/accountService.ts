@@ -42,7 +42,6 @@ export class AccountService {
       }
     }
     } catch (err){
-      console.log("err:" + err)
       const erro = (err as Error).message ? (err as Error).message : (err as string)
       this.mensagem.detalhe = erro.replace(/["']/g, '');
     }
@@ -60,11 +59,16 @@ export class AccountService {
   }
 
   async createAccount(user: User) {
-    const url = `${environment.api}/corretores`;   
-    const result = await this.http.post<any>(url, user).toPromise();
-    if (result && result.message)
-      this.mensagem.detalhe = result.message
-    return this.mensagem
+    try {
+      const url = `${environment.api}/corretores`;   
+      const result = await this.http.post<any>(url, user).toPromise();
+      if (result && result.message)
+        this.mensagem.sucesso = true
+    } catch (err){
+      const erro = (err as Error).message ? (err as Error).message : (err as string)
+      this.mensagem.detalhe = erro.replace(/["']/g, '');
+    }
+    return this.mensagem;    
   }
 
   forgotPassword(creci: string): Observable<any>{  
