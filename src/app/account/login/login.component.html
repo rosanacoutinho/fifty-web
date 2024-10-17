@@ -37,13 +37,13 @@
       <div class="modal-body">
         <label>Creci</label>
               <div class="input-group input-group-sm mb-3">
-                  <input class="form-control" type="text" name="creci" id="creci" [(ngModel)]="creci"/>    
+                  <input class="form-control" type="text" name="creci_" id="creci_" [(ngModel)]="creci_"/>    
               </div>
       </div>
       
       <div class="modal-body">{{responseText}}</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="solicitarSenha(creci)">Solicitar nova senha</button>
+        <button type="button" class="btn btn-primary" (click)="solicitarSenha(creci_)">Solicitar nova senha</button>
       </div>
     </div>
   </div>

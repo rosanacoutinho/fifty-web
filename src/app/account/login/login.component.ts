@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     tokem:''
   };
 
-  creci: string = ""
+  creci_: string = ""
   token: string = ""
   responseText: string = ""
 
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   close(){
-    this.creci=""
+    this.creci_=""
     this.responseText = ""
   }
 
