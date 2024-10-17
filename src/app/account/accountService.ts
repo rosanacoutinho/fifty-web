@@ -60,7 +60,7 @@ export class AccountService {
 
   async createAccount(user: User) {
     try {
-      const url = `${environment.api}/corretores`;   
+      const url = `${environment.api}/auth/register`;   
       const result = await this.http.post<any>(url, user).toPromise();
       if (result && result.message)
         this.mensagem.sucesso = true
