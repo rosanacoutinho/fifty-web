@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { UserDataService } from './user-data.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -91,14 +92,14 @@ export class AccountService {
   } 
 
   getTokenExpirationDate(token: string): Date {
-    // const decoded: any = jwtDecode(token);
-    // if (decoded.exp === undefined) {
-    //   //return null;
-    // }
+     const decoded: any = jwtDecode(token);
+     if (decoded.exp === undefined) {
+       //return null;
+     }
 
-    // const date = new Date(0);
-    // date.setUTCSeconds(decoded.exp);
-     return new Date();
+     const date = new Date(0);
+     date.setUTCSeconds(decoded.exp);
+     return date;
   }
 
   isTokenExpired(token?: string): boolean {
@@ -111,7 +112,7 @@ export class AccountService {
       return false;
     }
 
-    return false //!(date.valueOf() > new Date().valueOf());
+    return !(date.valueOf() > new Date().valueOf());
   }
 
   isUserLoggedIn() {
@@ -119,15 +120,9 @@ export class AccountService {
     if (!token) {
       return false;
     } else if (this.isTokenExpired(token)) {
-      return true;    //trocar pra false
+      return false; 
     }
 
     return true;
   }
 }
-
-function jwtDecode(token: string): any {
-  throw new Error('Function not implemented.');
-}
-
-
