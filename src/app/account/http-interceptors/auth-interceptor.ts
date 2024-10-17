@@ -51,6 +51,6 @@ export class AuthInterceptor implements HttpInterceptor {
         `Erro: ${JSON.stringify(error.error)}`);
     }
     // retornar um observable com uma mensagem amigavel.
-    return throwError('Ocorreu um erro, tente novamente');
+    return throwError(JSON.stringify(error.error.message));
   }
 }

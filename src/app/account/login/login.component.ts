@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AccountService } from '../accountService';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Mensagem } from '../../models/mensagem';
 
 @Component({
   selector: 'app-login',
@@ -22,14 +23,16 @@ export class LoginComponent implements OnInit {
 
   creci_: string = ""
   token: string = ""
-  responseText: string = ""
+  mensagemSenha: string = ""
+  mensagemLogin: string = ""
+
 
   constructor(
     private accountService: AccountService,
     private router : Router,
   ) { }
 
- 
+  
   ngOnInit(): void {
 
   }
@@ -37,22 +40,24 @@ export class LoginComponent implements OnInit {
   async onSubmit(){
     try {
       const result = await this.accountService.login(this.user);
-      this.router.navigate(['home']);
+      if (result.sucesso){
+        this.router.navigate(['home']);
+      }
+      this.mensagemLogin = result.detalhe
     } catch (error) {
-      alert("Usuário não cadastrado" );
-      //console.error(error);
+      console.error(error);
     }
   }
 
   close(){
     this.creci_=""
-    this.responseText = ""
+    this.mensagemSenha = ""
   }
 
   solicitarSenha(creci: string){
     this.accountService.forgotPassword(creci).subscribe({
       next: (response) => {
-        this.responseText = response;
+        this.mensagemSenha = response;
       },
       error: (err: any) => {
         console.error(err),

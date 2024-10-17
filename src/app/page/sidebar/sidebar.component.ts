@@ -54,15 +54,10 @@ export class SidebarComponent implements OnInit {
 
   ehAdmin(): boolean{
     for(let authorityObj of this.user.authorities){
-      console.log("ehadmin")
-      console.log(authorityObj.authority)
       if (authorityObj.authority === 'ROLE_ADMIN'){
-        console.log("true")
         return true;
-        
       }
     }
-    console.log("false")
     return false;
   }
 }

@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { UserDataService } from './user-data.service';
 import { jwtDecode } from 'jwt-decode';
+import { Mensagem } from '../models/mensagem';
 
 @Injectable({
   providedIn: 'root'
@@ -16,32 +17,36 @@ export class AccountService {
   ) { }
  
   creciValido: boolean = false;
-  token: string = "";     
-  
+  token: string = "";    
+  mensagem: Mensagem = {sucesso: false, detalhe:""}
+  error: string = ""
+
   async login(user: any) {
     try{
       const body = { creci: user.creci, senha: user.senha};
       const result = await this.http.post<any>(`${environment.api}/auth/login`, body).toPromise();
 
-    if (result && result.token){  
-      user.token = result.token
-      this.userDataService.changeData(user);
-      this.getAccount(user.creci).subscribe({
-        next: (response) => {
-          user.nome = response.nome,
-          user.id = response.id,
-          this.userDataService.changeData(user);
-        },
-        error: (err) => console.error("Erro ao carregar usuario", err)
-      })
-
-      return true;
+    if (result) {
+      if (result.token){  
+        user.token = result.token
+        this.userDataService.changeData(user);
+        this.getAccount(user.creci).subscribe({
+          next: (response) => {
+            user.nome = response.nome,
+            user.id = response.id,
+            this.userDataService.changeData(user);
+          },
+          error: (err) => console.error("Erro ao carregar usuario", err)
+        })
+        this.mensagem.sucesso = true;
+      }
     }
     } catch (err){
-      console.log(err)
+      console.log("err:" + err)
+      const erro = (err as Error).message ? (err as Error).message : (err as string)
+      this.mensagem.detalhe = erro.replace(/["']/g, '');
     }
-       
-    return false;
+    return this.mensagem;
   }
 
 //ESTE METODO NAO PRECISA ESTAR LOGADO
@@ -56,7 +61,10 @@ export class AccountService {
 
   async createAccount(user: User) {
     const url = `${environment.api}/corretores`;   
-    return await this.http.post<any>(url, user).toPromise();
+    const result = await this.http.post<any>(url, user).toPromise();
+    if (result && result.message)
+      this.mensagem.detalhe = result.message
+    return this.mensagem
   }
 
   forgotPassword(creci: string): Observable<any>{  

@@ -17,6 +17,7 @@
         <label>Senha</label>
         <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="user.senha" required />
       </div>
+      <div>{{mensagemLogin}}</div>
       <button type="submit" class="btn btn-primary btn-block" [disabled]="form.form.invalid" >Entrar</button>
       <button type="button" class="btn btn-link btn-block" [routerLink]="['/create-account']">Registre-se</button>
       <button type="button" class="btn btn-link btn-block" data-toggle="modal" data-target="#modalEsqueciSenha">Esqueci a senha</button>
@@ -42,7 +43,7 @@
               </div>
       </div>
       
-      <div class="modal-body">{{responseText}}</div>
+      <div class="modal-body">{{mensagemSenha}}</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="solicitarSenha(creci_)">Solicitar nova senha</button>
       </div>
