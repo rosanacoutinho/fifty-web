@@ -7,6 +7,7 @@
             <th>E-mail</th>
             <th>Mensagem</th>
             <th>Solicitação</th>
+            <th>Data solicitação</th>
             <th>Senha provisoria</th>
         </tr>
     </thead>
@@ -18,6 +19,7 @@
             <td>{{solicitacao.email}}</td>
             <td>{{solicitacao.mensagem}}</td>
             <td>{{solicitacao.solicitacao}}</td>
+            <td>{{solicitacao.data_solicitacao}}</td>
             <td>{{solicitacao.senhaTemp}}</td>
             <td>
             <button *ngIf="solicitacao.solicitacao == 'ESQUECI_MINHA_SENHA' " title="Gerar senha provisoria" class="btn btn-sm btn-primary mx-1" (click)="gerarSenhaProvisoria(solicitacao.creci)" >
