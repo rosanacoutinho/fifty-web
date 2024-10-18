@@ -1,19 +1,29 @@
-<h2 class="text-center">Está com algum problema? Entre em contato</h2>
+<h2 class="text-center">Entre em contato</h2>
 <br>
 <br>
 <br>
 <form (ngSubmit)="onSubmit()" #form="ngForm" >
+  <div class="form-group" *ngIf="usuarioLogado">
+    <label>CRECI</label>
+    <input [disabled]="usuarioLogado" class="form-control" type="text" name="creci" id="creci" [(ngModel)]="ajuda.creci" required />
+  </div>
   <div class="form-group">
-    <label>E-mail para contato</label>
+    <label>Nome</label>
+    <input [disabled]="usuarioLogado" class="form-control" type="text" name="nome" id="nome" [(ngModel)]="ajuda.nome" required />
+  </div>
+  <div class="form-group" *ngIf="!usuarioLogado"> 
+    <label>E-mail</label>
     <input class="form-control" type="text" name="email" id="email" [(ngModel)]="ajuda.email" required />
   </div>
-  <div class="form-group">
-    <label>Assunto</label>
-    <input class="form-control" type="text" name="assunto" id="assunto" [(ngModel)]="ajuda.assunto" required />
+  <div class="form-group" *ngIf="!usuarioLogado">
+    <label>Whatsapp</label>
+    <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="ajuda.telefone" required />
   </div>
   <div class="form-group">
-    <label>Descrição</label>
-    <input class="form-control" type="text" name="descricao" id="descricao" [(ngModel)]="ajuda.descricao" required />
+    <label>Mensagem</label>
+    <input class="form-control" type="text" name="mensagem" id="mensagem" [(ngModel)]="ajuda.mensagem" required />
   </div>
   <button type="submit" class="btn btn-primary btn-block">Enviar</button>
   <button class="btn btn-secondary btn-block" (click)="voltar()">Voltar</button>
+  <br>
+<h3>{{mensagemResposta}}</h3>

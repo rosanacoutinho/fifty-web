@@ -6,6 +6,7 @@ import { User } from '../models/user';
 import { UserDataService } from './user-data.service';
 import { jwtDecode } from 'jwt-decode';
 import { Mensagem } from '../models/mensagem';
+import { Ajuda } from '../models/ajuda';
 
 @Injectable({
   providedIn: 'root'
@@ -74,13 +75,18 @@ export class AccountService {
   forgotPassword(creci: string): Observable<any>{  
     const body = { creci: creci, siglaEstado: ""};
     const url = `${environment.api}/auth/forgot-password`;   
-    return this.http.post<any>(url, body, { responseType: 'text' as 'json'} );
+    return this.http.post<any>(url, body );
   }
 
   changePassword(oldPassword: string, newPassword: string): Observable<any>{  
     const body = { oldPassword: oldPassword, newPassword: newPassword};
     const url = `${environment.api}/auth/change-password`;   
-    return this.http.post<any>(url, body, { responseType: 'text' as 'json'} );
+    return this.http.post<any>(url, body);
+  }
+
+  askForHelp(ajuda:Ajuda){
+    const url = `${environment.api}/auth/help`;   
+    return this.http.post<any>(url, ajuda );
   }
 
   getAccount(creci:string): Observable<any>{

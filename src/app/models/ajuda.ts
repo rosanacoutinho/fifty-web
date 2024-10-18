@@ -1,6 +1,8 @@
 export interface Ajuda {
+    creci:string
+    nome: string,
     email: string,
-    assunto: string,
-    descricao: string
+    telefone: string,
+    mensagem: string
 
 }

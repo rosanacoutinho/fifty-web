@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
   solicitarSenha(creci: string){
     this.accountService.forgotPassword(creci).subscribe({
       next: (response) => {
-        this.mensagemSenha = response;
+        this.mensagemSenha = response.message;
       },
       error: (err: any) => {
         console.error(err),

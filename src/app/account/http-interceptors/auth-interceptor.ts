@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Lista de URLs que não devem ser interceptadas
-    const excludedUrls = ['/auth/creci','/vitrine/', '/auth/forgot-password','/auth/register'];
+    const excludedUrls = ['/auth/creci','/vitrine/', '/auth/forgot-password','/auth/register', '/auth/help'];
 
      // Verifica se a URL da requisição está na lista de exclusão
      if (excludedUrls.some(url => req.url.includes(url))) {
