@@ -81,7 +81,7 @@ export class AccountService {
   changePassword(oldPassword: string, newPassword: string): Observable<any>{  
     const body = { oldPassword: oldPassword, newPassword: newPassword};
     const url = `${environment.api}/auth/change-password`;   
-    return this.http.post<any>(url, body);
+    return this.http.post<any>(url, body, { responseType: 'text' as 'json'});
   }
 
   askForHelp(ajuda:Ajuda){
