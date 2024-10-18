@@ -59,17 +59,9 @@ export class AccountService {
     return result;
   }
 
-  async createAccount(user: User) {
-    try {
+  createAccount(user: User)  : Observable<any> {
       const url = `${environment.api}/auth/register`;   
-      const result = await this.http.post<any>(url, user).toPromise();
-      if (result && result.message)
-        this.mensagem.sucesso = true
-    } catch (err){
-      const erro = (err as Error).message ? (err as Error).message : (err as string)
-      this.mensagem.detalhe = erro.replace(/["']/g, '');
-    }
-    return this.mensagem;    
+      return this.http.post<any>(url, user);
   }
 
   forgotPassword(creci: string): Observable<any>{  

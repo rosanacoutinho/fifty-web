@@ -71,7 +71,7 @@ export class CreateAccountComponent implements OnInit {
      this.accountService.verificaCreci( this.account.creci, this.account.siglaEstado ).subscribe({ 
       next: (response: { creci: string; nome: string; }) => {
         if(response){
-          this.mensagem = ''
+        this.mensagem = ''
         this.creciValido = true;
         this.account.creci=response.creci
         this.account.nome= response.nome
@@ -91,27 +91,33 @@ export class CreateAccountComponent implements OnInit {
 
 
    async onSubmit() {
+
     if(this.isEditing){
-      this.accountService.updateAccount(this.account) //no back, update Corretor nao manda a senha. Ta certo assim?
-      .subscribe({
-        next: () => {
-          alert("Dados atualizados com sucesso!")
-        },
-        error: (err: any) => {
-          console.error(err);
-        }
-      });}
-    else {
-      try {
-        const result = await this.accountService.createAccount(this.account);
-        if (result.sucesso)
-          this.router.navigate(['login']);
-        this.mensagem = result.detalhe
-      } catch (error){
-        console.error(error);
-      } 
-      }
+          this.accountService.updateAccount(this.account) //no back, update Corretor nao manda a senha. Ta certo assim?
+          .subscribe({
+            next: () => {
+              alert("Dados atualizados com sucesso!")
+            },
+            error: (err: any) => {
+              console.error(err);
+            }
+          });
     }
+    else 
+    {
+        this.accountService.createAccount(this.account)
+          .subscribe({
+            next: (response) => {
+            this.mensagem = "Corretor cadastrado com sucesso!"
+              console.error(response);
+            },
+            error: (err: any) => {
+              this.mensagem = err.error.message
+              console.error(err);
+            }
+          });
+    }
+  } 
 
     setEstado(siglaEstado : string){
       this.account.siglaEstado = siglaEstado
@@ -120,4 +126,6 @@ export class CreateAccountComponent implements OnInit {
     voltar(){
       this.router.navigate(['/login'])
     }
-}
+
+
+  }
