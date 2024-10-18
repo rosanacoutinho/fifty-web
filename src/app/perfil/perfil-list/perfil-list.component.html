@@ -9,7 +9,7 @@
     </button>
     <br>
     <br>
-    <h3 class="mt-5 mb-3">Meus Perfis de Interesse</h3>
+    <h3  *ngIf="perfis.length" class="mt-5 mb-3">Meus Perfis de Interesse</h3>
 </div>
 <br>
 <table class="table table-striped" *ngIf="perfis.length">
@@ -59,6 +59,21 @@
 
 </ul>
 <ng-template #noPerfil>
-    <p>Você não posui nenhum perfil cadastrado</p>
-</ng-template>
+
+    <div class="card border-dark mb-3" style="max-width: 50rem;">
+        <div class="card-header"> Cadastre seu perfil de interesse</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">Vejo que voce ainda posui nenhum perfil de interesse cadastrado</h5>
+          <p class="card-text">
+            
+        Se voce possui um cliente, cadastre suas preferências em um perfil de interesse <br>
+        Lembre-se de dar o maximo de detalhes possíveis pois isso ajuda nosso algoritmo nas buscas 
+        por interessados  <br>
+        Especifique tudo o que ele deseja em um imóvel e o FIfty encontrara possiveis 
+        parceiros!
+          </p>
+        </div>
+      </div>
+
+    </ng-template>
 

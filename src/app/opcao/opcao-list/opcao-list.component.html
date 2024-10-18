@@ -9,7 +9,7 @@
         </button>
     <br>
     <br>
-    <h3 class="mt-5 mb-3">Minhas Opções</h3>
+    <h3  *ngIf="opcoes.length" class="mt-5 mb-3">Minhas Opções</h3>
 </div>
 <br>
 <table class="table table-striped" *ngIf="opcoes.length">
@@ -69,5 +69,15 @@
 
 </ul>
 <ng-template #noOpcao>
-    <p>Você não posui nenhuma opção cadastrada</p>
+
+    <div class="card text-white bg-dark mb-3" style="max-width: 50rem;">
+        <div class="card-header">Cadastre sua opcão</div>
+        <div class="card-body">
+          <h5 class="card-title">Vejo que voce ainda  posui nenhuma opção cadastrada</h5>
+          <p class="card-text">Lembre-se de dar o maximo de detalhes possíveis pois isso ajuda nosso algoritmo nas buscas 
+            por interessados <br>
+            E não se preocupe, as informações importantes da sua opção,
+            como numero e apartamento, nao serão divulgadas para outros corretores. Voce esta seguro.</p>
+        </div>
+      </div>
 </ng-template>

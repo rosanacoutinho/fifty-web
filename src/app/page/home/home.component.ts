@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserDataService } from '../../account/user-data.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Token } from '@angular/compiler';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
+  imports: [RouterLink,CommonModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
